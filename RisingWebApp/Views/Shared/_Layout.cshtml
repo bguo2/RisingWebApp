@@ -8,6 +8,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.min.js"></script>
 
 </head>
 <body ng-app="RisingWebApp">
@@ -15,12 +17,12 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>Rising Investment LLC &copy; Copyright | All Rights Reserved</p>
+            <p>Copyright &copy; @DateTime.Now.Year Rising Investment LLC - All Rights Reserved</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/PageRouting/Routing.js"></script>
+    <script src="~/Scripts/PageController/Controller.js"></script>
+
 </body>
 </html>

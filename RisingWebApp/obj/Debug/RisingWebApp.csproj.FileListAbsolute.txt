@@ -54,6 +54,6 @@ C:\Git\RisingWebApp\RisingWebApp\bin\System.Web.WebPages.xml
 C:\Git\RisingWebApp\RisingWebApp\bin\System.Web.WebPages.Deployment.xml
 C:\Git\RisingWebApp\RisingWebApp\bin\System.Web.WebPages.Razor.xml
 C:\Git\RisingWebApp\RisingWebApp\bin\Antlr3.Runtime.pdb
-C:\Git\RisingWebApp\RisingWebApp\obj\Debug\RisingWebApp.csprojResolveAssemblyReference.cache
 C:\Git\RisingWebApp\RisingWebApp\obj\Debug\RisingWebApp.dll
 C:\Git\RisingWebApp\RisingWebApp\obj\Debug\RisingWebApp.pdb
+C:\Git\RisingWebApp\RisingWebApp\obj\Debug\RisingWebApp.csprojResolveAssemblyReference.cache
