@@ -10,4 +10,14 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $http)
         }
     }, true);
 
+    $('#personalInfo').on('show.bs.collapse', function () {
+        $('#callapseIcon3').removeClass("glyphicon-menu-down");
+        $('#callapseIcon3').addClass("glyphicon-menu-up");
+    });
+    $('#personalInfo').on('hide.bs.collapse', function () {
+        $('#callapseIcon3').addClass("glyphicon-menu-down");
+        $('#callapseIcon3').removeClass("glyphicon-menu-up");
+    });
+
+
 });
