@@ -5,8 +5,11 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $http)
     $scope.$watch("basic", function () {
         if (!angular.isUndefined($scope.basic.apptype) && !angular.isUndefined($scope.basic.premises) && angular.isNumber($scope.basic.rent)
             && angular.isDate($scope.basic.movein_date)) {
-            $('#basicDiv').removeClass("yellow_background");
-            $('#basicDiv').addClass("green_background");
+                $('#basicDiv').removeClass("yellow_background");
+                $('#basicDiv').addClass("green_background");
+                $('#personalInfo').collapse({
+                    toggle: true
+                });
         }
     }, true);
 
