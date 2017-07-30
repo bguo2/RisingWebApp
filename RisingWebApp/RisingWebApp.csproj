@@ -176,7 +176,8 @@
     </Content>
     <Content Include="Scripts\PageController\Controller.js" />
     <Content Include="Scripts\PageRouting\Routing.js" />
-    <Content Include="Static\Apply.html" />
+    <Content Include="Static\Application.html" />
+    <Content Include="Static\Applications.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

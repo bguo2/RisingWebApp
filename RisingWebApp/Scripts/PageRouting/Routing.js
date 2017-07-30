@@ -9,7 +9,7 @@
 
         $routeProvider
         .when('/', { // For Home Page
-            templateUrl: '/Static/Apply.html',
+            templateUrl: '/Static/Applications.html',
             controller: 'HomeController'
         })
         .otherwise({   // This is when any route not matched => error

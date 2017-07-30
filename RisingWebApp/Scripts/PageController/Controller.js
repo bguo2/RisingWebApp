@@ -1,7 +1,7 @@
 ﻿var app = angular.module('RisingWebApp');
 
-app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http) {
 
+app.controller('ApplicationForm', function ($scope, $rootScope, $location, $filter, $http) {
     $scope.basic = {};
     $scope.personalInfo = {};
 
@@ -10,18 +10,15 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
         "personalInfo": $scope.personalInfo
     };
 
-    $scope.applications = [];
-    $scope.applications.push($scope.application);
-
     //basci section
     $scope.$watch("basic", function () {
         if (!angular.isUndefined($scope.basic.apptype) && !angular.isUndefined($scope.basic.premises) && angular.isNumber($scope.basic.rent)
             && angular.isDate($scope.basic.movein_date)) {
-                $('#basicDiv').removeClass("yellow_background");
-                $('#basicDiv').addClass("green_background");
-                $('#personalInfo').collapse({
-                    toggle: true
-                });
+            $('#basicDiv').removeClass("yellow_background");
+            $('#basicDiv').addClass("green_background");
+            $('#personalInfo').collapse({
+                toggle: true
+            });
         }
     }, true);
 
@@ -36,6 +33,12 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //personal information section.
 
+    $scope.$parent.applications.push($scope.application);
+});
+
+app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http) {
+    $scope.applications = [];
+ 
     //add another application
     $scope.addAnotherApplication = function () {
 
