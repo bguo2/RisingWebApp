@@ -1,6 +1,6 @@
 ﻿var app = angular.module('RisingWebApp');
 
-function processAppForm($scope, formId)
+function processAppForm($scope, formIdName, formNumber)
 {
     $scope.basic = {};
     $scope.personalInfo = {};
@@ -13,13 +13,16 @@ function processAppForm($scope, formId)
     $scope.personalInfoShow = true;
 
     //basci section
-    $scope.$watch("basic", function () {
+    $scope.$watch("basic", function (newValue, oldValue) {
         if (!angular.isUndefined($scope.basic.apptype) && !angular.isUndefined($scope.basic.premises) && angular.isNumber($scope.basic.rent)
             && angular.isDate($scope.basic.movein_date)) {
-            var find = $(formId + ' #basicDiv');
+            var find = $(formIdName + ' #basicDiv');
             find.removeClass("yellow_background");
             find.addClass("green_background");
             $scope.personalInfoShow = true;
+            
+            //enable submit button
+            $scope.$parent.disableSubmit = false;
         }
     }, true);
 
@@ -29,18 +32,24 @@ function processAppForm($scope, formId)
     }
     //personal information section.
 
-    $scope.$parent.applications.push($scope.application);
+    //the current application is enabled.
+    $scope.$watch('$parent.curIndex', function () {
+        if (formNumber == $scope.$parent.curIndex) {
+            $scope.$parent.applications.push($scope.application);
+        }
+    });
 }
 
 app.controller('ApplicationForm0', function ($scope, $rootScope, $location, $filter, $http) {
-    processAppForm($scope, '#form0');
+    processAppForm($scope, '#form0', 0);
 });
 
 app.controller('ApplicationForm1', function ($scope, $rootScope, $location, $filter, $http) {
-    processAppForm($scope, '#form1');
+    processAppForm($scope, '#form1', 1);
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http) {
+    $scope.disableSubmit = true;
     $scope.applications = [];
     $scope.curIndex = 0;
     $scope.total = 2;
@@ -65,6 +74,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //submit
     $scope.submitForm = function () {
+        alert("submit");
         console.log($scope.applications);
     }
 });

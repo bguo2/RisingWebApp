@@ -8,8 +8,8 @@
 
     <div class="panel">
         <div class="panel-body" align="center">
-            <button type="submit" class="btn btn-primary" style="margin-right:20px;">Submit</button>
-            <button type="button" class="btn btn-primary" ng-click="addAnotherApplication();">Add Another Application</button>
+            <button type="submit" class="btn btn-primary" style="margin-right:20px;" ng-disabled="disableSubmit">Submit</button>
+            <button type="button" class="btn btn-primary" ng-click="addAnotherApplication();" ng-disabled="disableSubmit">Add Another Application</button>
         </div>
     </div>
 </form>
