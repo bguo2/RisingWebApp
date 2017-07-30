@@ -1,15 +1,21 @@
 ﻿
-<div style="padding-top:20px">Rent Application</div>
+<div style="padding-top:20px">
+    <b>THIS SECTION TO BE COMPLETED BY APPLICANT. A SEPARATE APPLICATION TO RENT IS REQUIRED FOR EACH OCCUPANT 18 YEARS OF AGE OR OVER, OR AN EMANCIPATED MINOR.</b>
+</div>
 
 <form novalidate id="form" ng-submit="submitForm()">
 
     <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm0" ng-show="formShow[0]" id="form0"></div>
     <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm1" ng-show="formShow[1]" id="form1"></div>
+    <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm2" ng-show="formShow[2]" id="form2"></div>
+    <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm3" ng-show="formShow[3]" id="form3"></div>
 
     <div class="panel">
         <div class="panel-body" align="center">
-            <button type="submit" class="btn btn-primary" style="margin-right:20px;" ng-disabled="disableSubmit">Submit</button>
-            <button type="button" class="btn btn-primary" ng-click="addAnotherApplication();" ng-disabled="disableSubmit">Add Another Application</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="disableSubmit">Submit</button>
+            <button type="button" class="btn btn-primary" ng-click="backToPrevious();" ng-disabled="disableBackToPrevious">Back To Previous Application</button>
+            <button type="button" class="btn btn-primary" ng-click="nextApplication();" ng-disabled="disableNextApplication">Next Application</button>
+            <button type="button" class="btn btn-primary" ng-click="addAnotherApplication();" ng-disabled="disableAddAnother">Add Another Application</button>
         </div>
     </div>
 </form>

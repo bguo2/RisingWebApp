@@ -23,6 +23,11 @@ function processAppForm($scope, formIdName, formNumber)
             
             //enable submit button
             $scope.$parent.disableSubmit = false;
+            if ($scope.$parent.curIndex == $scope.$parent.total - 1) {
+                $scope.$parent.disableAddAnother = true;
+            } else {
+                $scope.$parent.disableAddAnother = false;
+            }
         }
     }, true);
 
@@ -40,19 +45,31 @@ function processAppForm($scope, formIdName, formNumber)
     });
 }
 
-app.controller('ApplicationForm0', function ($scope, $rootScope, $location, $filter, $http) {
+app.controller('ApplicationForm0', function ($scope) {
     processAppForm($scope, '#form0', 0);
 });
 
-app.controller('ApplicationForm1', function ($scope, $rootScope, $location, $filter, $http) {
+app.controller('ApplicationForm1', function ($scope) {
     processAppForm($scope, '#form1', 1);
+});
+
+app.controller('ApplicationForm2', function ($scope) {
+    processAppForm($scope, '#form2', 2);
+});
+
+app.controller('ApplicationForm3', function ($scope) {
+    processAppForm($scope, '#form3', 3);
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http) {
     $scope.disableSubmit = true;
+    $scope.disableBackToPrevious = true;
+    $scope.disableNextApplication = true;
+    $scope.disableAddAnother = true;
     $scope.applications = [];
     $scope.curIndex = 0;
-    $scope.total = 2;
+    $scope.applicationsNumber = 1;
+    $scope.total = 4;
     $scope.formShow = [];
     $scope.formShow[0] = true;
     for (i = 1; i < $scope.total; i++) {
@@ -61,20 +78,66 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //add another application
     $scope.addAnotherApplication = function () {
-        if ($scope.curIndex == $scope.total - 1) {
-            return;
-        }
-
-        $scope.curIndex++;
+        debugger;
+        $scope.applicationsNumber++;
+        //set the new application to be current one.
+        $scope.curIndex = $scope.applicationsNumber - 1;
         $scope.formShow[$scope.curIndex] = true;
         for (i = 0; i < $scope.curIndex; i++) {
+            $scope.formShow[i] = false;
+        }
+        if ($scope.curIndex == $scope.total - 1) {
+            $scope.disableAddAnother = true;
+        }
+        $scope.disableBackToPrevious = false;
+        $scope.disableNextApplication = true;
+    }
+
+    //back to previous
+    $scope.backToPrevious = function () {
+        debugger;
+        $scope.curIndex--;
+        if ($scope.curIndex == 0) {
+            $scope.disableBackToPrevious = true;
+        }
+        if ($scope.curIndex <= $scope.applicationsNumber - 1) {
+            $scope.disableNextApplication = false;
+        }
+        else {
+            $scope.disableNextApplication = true;
+        }
+
+        $scope.formShow[$scope.curIndex] = true;
+        for (i = 0; i < $scope.total; i++) {
+            if (i == $scope.curIndex) {
+                continue;
+            }
+            $scope.formShow[i] = false;
+        }
+    }
+
+    //next application
+    $scope.nextApplication = function () {
+        debugger;
+        $scope.curIndex++;
+        $scope.formShow[$scope.curIndex] = true;
+        if ($scope.curIndex >= $scope.applicationsNumber - 1) {
+            $scope.disableNextApplication = true;
+        }
+        else {
+            $scope.disableNextApplication = false;
+        }
+        $scope.disableBackToPrevious = false;
+        for (i = 0; i < $scope.total; i++) {
+            if (i == $scope.curIndex) {
+                continue;
+            }
             $scope.formShow[i] = false;
         }
     }
 
     //submit
     $scope.submitForm = function () {
-        alert("submit");
         console.log($scope.applications);
     }
 });
