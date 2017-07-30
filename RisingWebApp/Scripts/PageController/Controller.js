@@ -1,7 +1,7 @@
 ﻿var app = angular.module('RisingWebApp');
 
-
-app.controller('ApplicationForm', function ($scope, $rootScope, $location, $filter, $http) {
+function processAppForm($scope)
+{
     $scope.basic = {};
     $scope.personalInfo = {};
 
@@ -26,6 +26,8 @@ app.controller('ApplicationForm', function ($scope, $rootScope, $location, $filt
         $('#callapseIcon3').removeClass("glyphicon-menu-down");
         $('#callapseIcon3').addClass("glyphicon-menu-up");
     });
+
+
     $('#personalInfo').on('hide.bs.collapse', function () {
         $('#callapseIcon3').addClass("glyphicon-menu-down");
         $('#callapseIcon3').removeClass("glyphicon-menu-up");
@@ -34,14 +36,33 @@ app.controller('ApplicationForm', function ($scope, $rootScope, $location, $filt
     //personal information section.
 
     $scope.$parent.applications.push($scope.application);
+}
+
+app.controller('ApplicationForm0', function ($scope, $rootScope, $location, $filter, $http) {
+    processAppForm($scope);
+});
+
+app.controller('ApplicationForm1', function ($scope, $rootScope, $location, $filter, $http) {
+    processAppForm($scope);
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http) {
     $scope.applications = [];
- 
+    $scope.curIndex = 0;
+    $scope.total = 2;
+    $scope.formShow = [];
+    $scope.formShow[0] = true;
+    for (i = 1; i < $scope.total; i++) {
+        $scope.formShow[i] = false;
+    }
+
     //add another application
     $scope.addAnotherApplication = function () {
-
+        $scope.curIndex++;
+        $scope.formShow[$scope.curIndex] = true;
+        for (i = 0; i < $scope.curIndex; i++) {
+            $scope.formShow[i] = false;
+        }
     }
 
     //submit

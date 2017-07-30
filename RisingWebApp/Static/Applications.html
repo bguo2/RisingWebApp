@@ -3,7 +3,8 @@
 
 <form novalidate id="form" ng-submit="submitForm()">
 
-    <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm"></div>
+    <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm0" ng-show="formShow[0]"></div>
+    <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm1" ng-show="formShow[1]"></div>
 
     <div class="container">
         <button type="submit" class="btn btn-primary">Submit</button>
