@@ -1,6 +1,6 @@
 ﻿var app = angular.module('RisingWebApp');
 
-function processAppForm($scope)
+function processAppForm($scope, formId)
 {
     $scope.basic = {};
     $scope.personalInfo = {};
@@ -10,40 +10,34 @@ function processAppForm($scope)
         "personalInfo": $scope.personalInfo
     };
 
+    $scope.personalInfoShow = true;
+
     //basci section
     $scope.$watch("basic", function () {
         if (!angular.isUndefined($scope.basic.apptype) && !angular.isUndefined($scope.basic.premises) && angular.isNumber($scope.basic.rent)
             && angular.isDate($scope.basic.movein_date)) {
-            $('#basicDiv').removeClass("yellow_background");
-            $('#basicDiv').addClass("green_background");
-            $('#personalInfo').collapse({
-                toggle: true
-            });
+            var find = $(formId + ' #basicDiv');
+            find.removeClass("yellow_background");
+            find.addClass("green_background");
+            $scope.personalInfoShow = true;
         }
     }, true);
 
-    $('#personalInfo').on('show.bs.collapse', function () {
-        $('#callapseIcon3').removeClass("glyphicon-menu-down");
-        $('#callapseIcon3').addClass("glyphicon-menu-up");
-    });
-
-
-    $('#personalInfo').on('hide.bs.collapse', function () {
-        $('#callapseIcon3').addClass("glyphicon-menu-down");
-        $('#callapseIcon3').removeClass("glyphicon-menu-up");
-    });
-
+    $scope.personalInfoShow = false;
+    $scope.personalInfoDivClick = function () {
+        $scope.personalInfoShow = !$scope.personalInfoShow;
+    }
     //personal information section.
 
     $scope.$parent.applications.push($scope.application);
 }
 
 app.controller('ApplicationForm0', function ($scope, $rootScope, $location, $filter, $http) {
-    processAppForm($scope);
+    processAppForm($scope, '#form0');
 });
 
 app.controller('ApplicationForm1', function ($scope, $rootScope, $location, $filter, $http) {
-    processAppForm($scope);
+    processAppForm($scope, '#form1');
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http) {
@@ -58,6 +52,10 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //add another application
     $scope.addAnotherApplication = function () {
+        if ($scope.curIndex == $scope.total - 1) {
+            return;
+        }
+
         $scope.curIndex++;
         $scope.formShow[$scope.curIndex] = true;
         for (i = 0; i < $scope.curIndex; i++) {

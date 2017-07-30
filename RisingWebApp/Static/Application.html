@@ -26,11 +26,12 @@
     </div>
 </div>
 <div class="panel panel-default yellow_background panel_default_margin">
-    <div class="panel-body point_cursor" data-toggle="collapse" data-target="#personalInfo">
+    <div class="panel-body point_cursor" ng-click="personalInfoDivClick();">
         <b>3. PERSONAL INFORMATION</b>
-        <span id="callapseIcon3" class="glyphicon glyphicon-menu-down right"></span>
+        <span ng-hide="personalInfoShow" class="glyphicon glyphicon-menu-down right"></span>
+        <span ng-show="personalInfoShow" class="glyphicon glyphicon-menu-up right"></span>
     </div>
-    <div id="personalInfo" class="collapse panel-default panel_margin">
+    <div ng-show="personalInfoShow" class="slideDown panel-default panel_margin">
         <div class="panel-body">
             <div class="row">
                 <div class="form-group col-sm-4">
