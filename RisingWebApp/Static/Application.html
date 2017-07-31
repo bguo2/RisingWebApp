@@ -126,6 +126,60 @@
                 </div>
             </div>
             <div class="row">
+                <div class="form-group col-sm-12" style="margin-bottom:0px;">
+                    <label>J. Does application or any proposed occupant plan to use liquid-filled furniture?</label>
+                </div>
+            </div>
+            <div class="row form-inline">
+                <div class="form-group col-sm-12">
+                    <div class="radio" style="margin-top:-5px;">
+                        <label><input type="radio" ng-model="personalInfo.liquidFurniture" value="no">No &nbsp;</label>
+                        <label><input type="radio" ng-model="personalInfo.liquidFurniture" value="yes">Yes &nbsp;</label>
+                    </div>
+                    <span ng-show="personalInfo.liquidFurniture == 'yes'">Type: <input type="text" class="form-control" ng-model="personalInfo.liquidFurnitureType"></span>
+                </div>
+            </div>
+            <div class="row margin_top_8">
+                <div class="form-group col-sm-12" style="margin-bottom:0px;">
+                    <label>K. Has applicant been a party to an unlawful detainer action or filed banckruptcy within the last seven years?</label>
+                </div>
+            </div>
+            <div class="row form-inline">
+                <div class="form-group col-sm-12">
+                    <div class="radio" style="margin-top:-5px;">
+                        <label><input type="radio" ng-model="personalInfo.banckruptcy" value="no">No &nbsp;</label>
+                        <label><input type="radio" ng-model="personalInfo.banckruptcy" value="yes">Yes &nbsp;</label>
+                    </div>
+                    <span ng-show="personalInfo.banckruptcy == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="personalInfo.banckruptcyReason"></span>
+                </div>
+            </div>
+            <div class="row margin_top_8">
+                <div class="form-group col-sm-12" style="margin-bottom:0px;">
+                    <label>L. Has applicant or any proposed ever been convicted of or pleaded no contect to a felony?</label>
+                </div>
+            </div>
+            <div class="row form-inline">
+                <div class="form-group col-sm-12">
+                    <div class="radio" style="margin-top:-5px;">
+                        <label><input type="radio" ng-model="personalInfo.felony" value="no">No &nbsp;</label>
+                        <label><input type="radio" ng-model="personalInfo.felony" value="yes">Yes &nbsp;</label>
+                    </div>
+                    <span ng-show="personalInfo.felony == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="personalInfo.felonyReason"></span>
+                </div>
+            </div>
+            <div class="row margin_top_8">
+                <div class="form-group col-sm-12" style="margin-bottom:0px;">
+                    <label>M. Has applicant or any proposed ever been asked to move out of a residence?</label>
+                </div>
+            </div>
+            <div class="row form-inline">
+                <div class="form-group col-sm-12">
+                    <div class="radio" style="margin-top:-5px;">
+                        <label><input type="radio" ng-model="personalInfo.moveoutResidence" value="no">No &nbsp;</label>
+                        <label><input type="radio" ng-model="personalInfo.moveoutResidence" value="yes">Yes &nbsp;</label>
+                    </div>
+                    <span ng-show="personalInfo.moveoutResidence == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="personalInfo.moveoutReason"></span>
+                </div>
             </div>
         </div>
     </div>

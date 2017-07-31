@@ -2,6 +2,9 @@
 
 function processAppForm($scope, formIdName, formNumber)
 {
+    if ($scope.$parent.curIndex > 0) {
+        $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
+    }
     $scope.personalInfo = {};
     $scope.application = {
         "personalInfo": $scope.personalInfo
@@ -59,6 +62,8 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     for (i = 1; i < $scope.total; i++) {
         $scope.formShow[i] = false;
     }
+    $scope.applicationDescription = "Main Application ";
+    
 
     //basci section
     $scope.$watch("premises", function (newValue, oldValue) {
