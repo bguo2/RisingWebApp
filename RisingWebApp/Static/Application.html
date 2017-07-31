@@ -1,41 +1,25 @@
 ﻿
-<div class="panel panel-default yellow_background" id="basicDiv">
-    <div class="panel-body" style="margin-bottom:-18px;">
-        <div class="form-group">
-            <label>1. Applicant is completing application as &nbsp;</label>
-            <div class="radio" style="margin-top:-5px;">
-                <label><input type="radio" ng-model="basic.apptype" value="tenant">tenant &nbsp;</label>
-                <label><input type="radio" ng-model="basic.apptype" value="tenant_co_tenant">tenant with co-tenant &nbsp;</label>
-                <label><input type="radio" ng-model="basic.apptype" value="co_signer">guarantor/co-signer</label>
-            </div>
-        </div>
-        <div class="form-group" style="margin-bottom:-1px">
-            <label>2. PREMISES INFORMATION</label>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-4">
-                <input type="text" class="form-control" ng-model="basic.premises" placeholder="rent property address" data-toggle="tooltip" title="rent property address" required>
-            </div>
-            <div class="form-group col-sm-4">
-                <input type="number" class="form-control" ng-model="basic.rent" placeholder="rent" data-toggle="tooltip" title="rent" required>
-            </div>
-            <div class="form-group col-sm-4">
-                <input type="date" class="form-control" ng-model="basic.movein_date" placeholder="proposed move-in date" data-toggle="tooltip" title="proposed move-in date" required>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="panel panel-default yellow_background panel_default_margin">
     <div class="panel-body point_cursor" ng-click="personalInfoDivClick();">
-        <b>3. PERSONAL INFORMATION</b>
+        <b>2. PERSONAL INFORMATION</b>
         <span ng-hide="personalInfoShow" class="glyphicon glyphicon-menu-down right"></span>
         <span ng-show="personalInfoShow" class="glyphicon glyphicon-menu-up right"></span>
     </div>
     <div ng-show="personalInfoShow" class="slideDown panel-default panel_margin">
         <div class="panel-body">
             <div class="row">
+                <div class="form-group col-sm-8">
+                    <label>A. Applicant is completing application as &nbsp;</label>
+                    <div class="radio" style="margin-top:-5px;">
+                        <label><input type="radio" ng-model="personalInfo.apptype" value="tenant">tenant &nbsp;</label>
+                        <label><input type="radio" ng-model="personalInfo.apptype" value="tenant_co_tenant">tenant with co-tenant &nbsp;</label>
+                        <label><input type="radio" ng-model="personalInfo.apptype" value="co_signer">guarantor/co-signer</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="form-group col-sm-4">
-                    <label>A. Full Name:</label>
+                    <label>B. Full Name:</label>
                     <input type="text" class="form-control" ng-model="personalInfo.fullName">
                 </div>
                 <div class="form-group col-sm-4">
@@ -49,7 +33,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
-                    <label>B. Driver License - No.:</label>
+                    <label>C. Driver License - No.:</label>
                     <input type="text" class="form-control" ng-model="personalInfo.driverLicenseNo">
                 </div>
                 <div class="form-group col-sm-4">
@@ -63,7 +47,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
-                    <label>C. Phone - Home:</label>
+                    <label>D. Phone - Home:</label>
                     <input type="text" class="form-control" ng-model="personalInfo.phoneHome">
                 </div>
                 <div class="form-group col-sm-4">
@@ -77,23 +61,23 @@
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
-                    <label>D. Email:</label>
+                    <label>E. Email:</label>
                     <input type="email" class="form-control" ng-model="personalInfo.email" required>
                 </div>
                 <div class="form-group col-sm-8">
-                    <label>E. Name(s) of all other proposed occupant(s) and relationship to applicant:</label>
+                    <label>F. Name(s) of all other proposed occupant(s) and relationship to applicant:</label>
                     <input type="text" class="form-control" ng-model="personalInfo.otherOccupants">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
-                    <label>F. Pet(s) or service animals (name and type):</label>
+                    <label>G. Pet(s) or service animals (name and type):</label>
                     <input type="text" class="form-control" ng-model="personalInfo.pets">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-2">
-                    <label>G. Auto - Make:</label>
+                    <label>H. Auto - Make:</label>
                     <input type="text" class="form-control" ng-model="personalInfo.autoMaker">
                 </div>
                 <div class="form-group col-sm-2">
@@ -125,7 +109,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-sm-3">
-                    <label>H. Emergency - Contact:</label>
+                    <label>I. Emergency - Contact:</label>
                     <input type="text" class="form-control" ng-model="personalInfo.emergencyContact">
                 </div>
                 <div class="form-group col-sm-3">
@@ -148,6 +132,6 @@
 </div>
 <div class="panel panel-default yellow_background panel_default_margin ">
     <div class="panel-body">
-        <b>4. RESIDENCE HISTORY</b>
+        <b>3. RESIDENCE HISTORY</b>
     </div>
 </div>

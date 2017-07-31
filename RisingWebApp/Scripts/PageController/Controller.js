@@ -2,34 +2,10 @@
 
 function processAppForm($scope, formIdName, formNumber)
 {
-    $scope.basic = {};
     $scope.personalInfo = {};
-
     $scope.application = {
-        "basic": $scope.basic,
         "personalInfo": $scope.personalInfo
     };
-
-    $scope.personalInfoShow = true;
-
-    //basci section
-    $scope.$watch("basic", function (newValue, oldValue) {
-        if (!angular.isUndefined($scope.basic.apptype) && !angular.isUndefined($scope.basic.premises) && angular.isNumber($scope.basic.rent)
-            && angular.isDate($scope.basic.movein_date)) {
-            var find = $(formIdName + ' #basicDiv');
-            find.removeClass("yellow_background");
-            find.addClass("green_background");
-            $scope.personalInfoShow = true;
-            
-            //enable submit button
-            $scope.$parent.disableSubmit = false;
-            if ($scope.$parent.curIndex == $scope.$parent.total - 1) {
-                $scope.$parent.disableAddAnother = true;
-            } else {
-                $scope.$parent.disableAddAnother = false;
-            }
-        }
-    }, true);
 
     $scope.personalInfoShow = false;
     $scope.personalInfoDivClick = function () {
@@ -37,6 +13,13 @@ function processAppForm($scope, formIdName, formNumber)
     }
     //personal information section.
 
+    //listen to the parent event
+    $scope.$on('premisesDoneEvent', function (event, args) {
+        if (formNumber == $scope.$parent.curIndex) {
+            $scope.personalInfoShow = true;
+        }
+    });
+    
     //the current application is enabled.
     $scope.$watch('$parent.curIndex', function () {
         if (formNumber == $scope.$parent.curIndex) {
@@ -66,6 +49,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     $scope.disableBackToPrevious = true;
     $scope.disableNextApplication = true;
     $scope.disableAddAnother = true;
+    $scope.premises = {};
     $scope.applications = [];
     $scope.curIndex = 0;
     $scope.applicationsNumber = 1;
@@ -75,6 +59,16 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     for (i = 1; i < $scope.total; i++) {
         $scope.formShow[i] = false;
     }
+
+    //basci section
+    $scope.$watch("premises", function (newValue, oldValue) {
+        if (!angular.isUndefined($scope.premises.address) && angular.isNumber($scope.premises.rent) && angular.isDate($scope.premises.movein_date)) {
+            var find = $('#premises');
+            find.removeClass("yellow_background");
+            find.addClass("green_background");
+            $scope.$broadcast('premisesDoneEvent', true);
+        }
+    }, true);
 
     //add another application
     $scope.addAnotherApplication = function () {
