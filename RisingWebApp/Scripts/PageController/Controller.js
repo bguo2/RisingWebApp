@@ -14,7 +14,13 @@ function processAppForm($scope, formIdName, formNumber)
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
-    //personal information section.
+    
+    $scope.$watch('personalInfo', function () {
+        if (!angular.isUndefined($scope.personalInfo.apptype) && !angular.isUndefined($scope.personalInfo.fullName) &&
+            !angular.isUndefined($scope.personalInfo.email)) {
+            $scope.$parent.enableButtons();
+        }
+    }, true);
 
     //listen to the parent event
     $scope.$on('premisesDoneEvent', function (event, args) {
@@ -77,7 +83,6 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //add another application
     $scope.addAnotherApplication = function () {
-        debugger;
         $scope.applicationsNumber++;
         //set the new application to be current one.
         $scope.curIndex = $scope.applicationsNumber - 1;
@@ -94,7 +99,6 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //back to previous
     $scope.backToPrevious = function () {
-        debugger;
         $scope.curIndex--;
         if ($scope.curIndex == 0) {
             $scope.disableBackToPrevious = true;
@@ -117,7 +121,6 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //next application
     $scope.nextApplication = function () {
-        debugger;
         $scope.curIndex++;
         $scope.formShow[$scope.curIndex] = true;
         if ($scope.curIndex >= $scope.applicationsNumber - 1) {
@@ -132,6 +135,13 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
                 continue;
             }
             $scope.formShow[i] = false;
+        }
+    }
+
+    $scope.enableButtons = function () {
+        if ($('#premises').hasClass('green_background')) {
+            $scope.disableSubmit = false;
+            $scope.disableAddAnother = false;
         }
     }
 
