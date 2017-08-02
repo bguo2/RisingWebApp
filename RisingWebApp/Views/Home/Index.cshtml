@@ -28,7 +28,17 @@
     .margin_top_8 {
         margin-top:8px;
     }
-
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      > * {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+    .redbox{
+        border: 1px solid red;
+    }
 </style>
 
 

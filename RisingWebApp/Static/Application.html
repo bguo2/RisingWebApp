@@ -1,5 +1,5 @@
 ﻿
-<div class="panel panel-default yellow_background panel_default_margin">
+<div class="panel panel-default yellow_background panel_default_margin" id="personalInfoDiv">
     <div class="panel-body point_cursor" ng-click="personalInfoDivClick();">
         <b>2. PERSONAL INFORMATION</b>
         <span ng-hide="personalInfoShow" class="glyphicon glyphicon-menu-down right"></span>
@@ -9,8 +9,8 @@
         <div class="panel-body">
             <div class="row form-inline">
                 <div class="form-group col-sm-12">
-                    <label>A. Applicant is completing application as &nbsp;</label>
-                    <div class="radio" style="margin-top:-5px;">
+                    <label class="control-label">A. Applicant is completing application as &nbsp;</label>
+                    <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]">
                         <label><input type="radio" ng-model="personalInfo.apptype" value="tenant">tenant &nbsp;</label>
                         <label><input type="radio" ng-model="personalInfo.apptype" value="tenant_co_tenant">tenant with co-tenant &nbsp;</label>
                         <label><input type="radio" ng-model="personalInfo.apptype" value="co_signer">guarantor/co-signer</label>
@@ -19,40 +19,40 @@
             </div>
             <div class="row margin_top_8">
                 <div class="form-group col-sm-4">
-                    <label>B. Full Name:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.fullName" required>
+                    <label class="control-label">B. Full Name:</label>
+                    <input type="text" class="form-control" ng-model="personalInfo.fullName" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Date of Birth:</label>
-                    <input type="date" class="form-control" ng-model="personalInfo.birthDate" required>
+                    <input type="date" class="form-control" ng-model="personalInfo.birthDate" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Social Security No.:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.ssn">
+                    <input type="text" class="form-control" ng-model="personalInfo.ssn" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>C. Driver License - No.:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.driverLicenseNo">
+                    <input type="text" class="form-control" ng-model="personalInfo.driverLicenseNo" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>State:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.driverLicenseState">
+                    <input type="text" class="form-control" ng-model="personalInfo.driverLicenseState" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Expiry Date:</label>
-                    <input type="date" class="form-control" ng-model="personalInfo.driverLicenseExpiryDate">
+                    <input type="date" class="form-control" ng-model="personalInfo.driverLicenseExpiryDate" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>D. Phone - Home:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.phoneHome">
+                    <input type="text" class="form-control" ng-model="personalInfo.phoneHome" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Work:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.phoneWork">
+                    <input type="text" class="form-control" ng-model="personalInfo.phoneWork" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Other:</label>
@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>E. Email:</label>
-                    <input type="email" class="form-control" ng-model="personalInfo.email" required>
+                    <input type="email" class="form-control" ng-model="personalInfo.email" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-8">
                     <label>F. Name(s) of all other proposed occupant(s) and relationship to applicant:</label>
@@ -78,27 +78,27 @@
             <div class="row">
                 <div class="form-group col-sm-2">
                     <label>H. Auto - Make:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoMaker">
+                    <input type="text" class="form-control" ng-model="personalInfo.autoMaker" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Model:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoModel">
+                    <input type="text" class="form-control" ng-model="personalInfo.autoModel" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Year:</label>
-                    <input type="date" class="form-control" ng-model="personalInfo.autoYear">
+                    <input type="date" class="form-control" ng-model="personalInfo.autoYear" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>License No.:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoLicenseNo">
+                    <input type="text" class="form-control" ng-model="personalInfo.autoLicenseNo" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>State:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoState">
+                    <input type="text" class="form-control" ng-model="personalInfo.autoState" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Color:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoColor">
+                    <input type="text" class="form-control" ng-model="personalInfo.autoColor" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
@@ -110,19 +110,19 @@
             <div class="row">
                 <div class="form-group col-sm-3">
                     <label>I. Emergency - Contact:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.emergencyContact">
+                    <input type="text" class="form-control" ng-model="personalInfo.emergencyContact" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-3">
                     <label>Relationship:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.emergencyRelationship">
+                    <input type="text" class="form-control" ng-model="personalInfo.emergencyRelationship" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-3">
                     <label>Address:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.emergencyAddress">
+                    <input type="text" class="form-control" ng-model="personalInfo.emergencyAddress" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-3">
                     <label>Phone:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.emergencyPhone">
+                    <input type="text" class="form-control" ng-model="personalInfo.emergencyPhone" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">

@@ -1,5 +1,20 @@
 ﻿var app = angular.module('RisingWebApp');
 
+app.directive('input', function() {
+    return {
+        restrict: 'E',
+        link: Link
+    };
+
+    function Link(scope, elem, attrs) {
+        elem.on('change', function () {
+            if (scope.requiredClass === "redbox") {
+                elem.removeClass("redbox");
+            }
+        });
+    }
+});
+
 function processAppForm($scope, formIdName, formNumber)
 {
     if ($scope.$parent.curIndex > 0) {
@@ -14,11 +29,21 @@ function processAppForm($scope, formIdName, formNumber)
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
+
+    if (formNumber === 0) {
+        $scope.requiredClass = "redbox";
+    }
+    else {
+        $scope.requiredClass = "";
+    }
     
-    $scope.$watch('personalInfo', function () {
+    $scope.$watch('personalInfo', function (newValue, oldValue) {
         if (!angular.isUndefined($scope.personalInfo.apptype) && !angular.isUndefined($scope.personalInfo.fullName) &&
             !angular.isUndefined($scope.personalInfo.email)) {
             $scope.$parent.enableButtons();
+            var find = $(formIdName + ' #personalInfoDiv');
+            find.removeClass("yellow_background");
+            find.addClass("green_background");
         }
     }, true);
 
@@ -54,6 +79,7 @@ app.controller('ApplicationForm3', function ($scope) {
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http) {
+    $scope.disableForms = true;
     $scope.disableSubmit = true;
     $scope.disableBackToPrevious = true;
     $scope.disableNextApplication = true;
@@ -69,14 +95,15 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
         $scope.formShow[i] = false;
     }
     $scope.applicationDescription = "Main Application ";
+    $scope.requiredClass = "redbox";
     
-
     //basci section
     $scope.$watch("premises", function (newValue, oldValue) {
         if (!angular.isUndefined($scope.premises.address) && angular.isNumber($scope.premises.rent) && angular.isDate($scope.premises.movein_date)) {
             var find = $('#premises');
             find.removeClass("yellow_background");
             find.addClass("green_background");
+            $scope.disableForms = false;
             $scope.$broadcast('premisesDoneEvent', true);
         }
     }, true);
@@ -147,6 +174,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //submit
     $scope.submitForm = function () {
+        alert("submitted");
         console.log($scope.applications);
     }
 });
