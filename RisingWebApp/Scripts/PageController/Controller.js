@@ -6,8 +6,13 @@ app.directive('input', function() {
         link: Link
     };
 
-    function Link(scope, elem, attrs) {
+    function Link(scope, elem, attrs) {        
         elem.on('change', function () {
+            if (scope.requiredClass === "redbox") {
+                elem.removeClass("redbox");
+            }
+        });
+        elem.on('keydown', function () {
             if (scope.requiredClass === "redbox") {
                 elem.removeClass("redbox");
             }
@@ -36,24 +41,12 @@ function processAppForm($scope, formIdName, formNumber)
     else {
         $scope.requiredClass = "";
     }
-    
-    $scope.$watch('personalInfo', function (newValue, oldValue) {
-        if (!angular.isUndefined($scope.personalInfo.apptype) && !angular.isUndefined($scope.personalInfo.fullName) &&
-            !angular.isUndefined($scope.personalInfo.email)) {
-            $scope.$parent.enableButtons();
-            var find = $(formIdName + ' #personalInfoDiv');
-            find.removeClass("yellow_background");
-            find.addClass("green_background");
-        }
-    }, true);
+        
+    //radio clcik
+    $scope.radioClick = function (event) {
+        $(event.target).closest('div').removeClass("redbox");
+    }
 
-    //listen to the parent event
-    $scope.$on('premisesDoneEvent', function (event, args) {
-        if (formNumber == $scope.$parent.curIndex) {
-            $scope.personalInfoShow = true;
-        }
-    });
-    
     //the current application is enabled.
     $scope.$watch('$parent.curIndex', function () {
         if (formNumber == $scope.$parent.curIndex) {
@@ -62,8 +55,30 @@ function processAppForm($scope, formIdName, formNumber)
     });
 }
 
-app.controller('ApplicationForm0', function ($scope) {
+app.controller('ApplicationForm0', function ($scope, $timeout) {
     processAppForm($scope, '#form0', 0);
+    //listen to the parent event
+    $scope.$on('premisesDoneEvent', function (event, args) {
+        if ($scope.$parent.curIndex === 0) {
+            $scope.personalInfoShow = true;
+        }
+    });
+
+    $scope.$watch('personalInfo', function (newValue, oldValue) {
+        if (Object.keys(newValue).length < 20) {
+            return;
+        }
+        $timeout(function () {
+            var incompletes = $('#form0 #personalInfoDiv .redbox');
+            if (incompletes.length == 0) {
+                $scope.$parent.enableButtons();
+                var find = $('#form0 #personalInfoDiv');
+                find.removeClass("yellow_background");
+                find.addClass("green_background");
+            }
+        }, 100);
+    }, true);
+
 });
 
 app.controller('ApplicationForm1', function ($scope) {
@@ -78,7 +93,7 @@ app.controller('ApplicationForm3', function ($scope) {
     processAppForm($scope, '#form3', 3);
 });
 
-app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http) {
+app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
     $scope.disableForms = true;
     $scope.disableSubmit = true;
     $scope.disableBackToPrevious = true;
@@ -99,13 +114,19 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     
     //basci section
     $scope.$watch("premises", function (newValue, oldValue) {
-        if (!angular.isUndefined($scope.premises.address) && angular.isNumber($scope.premises.rent) && angular.isDate($scope.premises.movein_date)) {
-            var find = $('#premises');
-            find.removeClass("yellow_background");
-            find.addClass("green_background");
-            $scope.disableForms = false;
-            $scope.$broadcast('premisesDoneEvent', true);
+        if (Object.keys(newValue).length < 3) {
+            return;
         }
+        $timeout(function () {
+            var incompletes = $('#premises .redbox');
+            if (incompletes.length == 0) {
+                var find = $('#premises');
+                find.removeClass("yellow_background");
+                find.addClass("green_background");
+                $scope.disableForms = false;
+                $scope.$broadcast('premisesDoneEvent', true);
+            }
+        }, 100);
     }, true);
 
     //add another application
