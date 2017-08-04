@@ -48,8 +48,8 @@ function processAppForm($scope, formIdName, formNumber)
     }
 
     //the current application is enabled.
-    $scope.$watch('$parent.curIndex', function () {
-        if (formNumber == $scope.$parent.curIndex) {
+    $scope.$watch('$parent.applicationsNumber', function () {
+        if (formNumber == $scope.$parent.applicationsNumber - 1) {
             $scope.$parent.applications.push($scope.application);
         }
     });
@@ -101,6 +101,10 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     $scope.disableAddAnother = true;
     $scope.premises = {};
     $scope.applications = [];
+    $scope.rentApplication = {
+        "premises": $scope.premises,
+        "applications": $scope.applications
+    };
     $scope.curIndex = 0;
     $scope.applicationsNumber = 1;
     $scope.total = 4;
@@ -194,9 +198,23 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     }
 
     //submit
-    $scope.submitForm = function () {
-        alert("submitted");
-        console.log($scope.applications);
+    $scope.submitForm = function () {      
+        console.log($scope.rentApplication);
+        debugger;
+        $http({
+            url: 'http://localhost:53651/api/Application',
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            data: JSON.stringify($scope.rentApplication)
+        }).then(
+            //successful
+            function successCallback(response) {
+                alert("success: " + response.statusText);
+            },
+            //error
+            function errorCallback(response) {
+                alert("error: " + response.statusText);
+            });
     }
 });
 
