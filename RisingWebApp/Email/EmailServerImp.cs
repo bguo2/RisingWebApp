@@ -11,8 +11,6 @@ namespace RisingWebApp.Email
     public class EmailServerImp : IEmailServer
     {
         private IEmailServerSettings _settings;
-        private string _errorMsg;
-        private EmailSendResult _sendResult;
 
         public EmailServerImp(IEmailServerSettings settings)
         {

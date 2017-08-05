@@ -24,8 +24,11 @@ namespace RisingWebApp.Controllers
         {
             try
             {
-                await _rentAppManager.SendApplication(application);
-                return Request.CreateResponse(HttpStatusCode.Accepted);
+
+                var result = await _rentAppManager.SendApplication(application);
+                if(string.IsNullOrEmpty(result))
+                    return Request.CreateResponse(HttpStatusCode.Accepted);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, result);
             }
             catch (Exception e)
             {

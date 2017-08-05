@@ -9,6 +9,6 @@ namespace RisingWebApp.Managers
 {
     public interface IRentApplicationManager
     {
-        Task SendApplication(RentApplication application);
+        Task<string> SendApplication(RentApplication application);
     }
 }

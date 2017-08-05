@@ -10,119 +10,119 @@
             <div class="row form-inline">
                 <div class="form-group col-sm-12">
                     <label class="control-label">A. Applicant is completing application as &nbsp;</label>
-                    <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]">
-                        <label><input type="radio" ng-model="personalInfo.apptype" value="Tenant" ng-click="radioClick($event);">tenant &nbsp;</label>
-                        <label><input type="radio" ng-model="personalInfo.apptype" value="Tenant_co_tenant" ng-click="radioClick($event);">tenant with co-tenant &nbsp;</label>
-                        <label><input type="radio" ng-model="personalInfo.apptype" value="Co_signer" ng-click="radioClick($event);">guarantor/co-signer</label>
+                    <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]" ng-init="{{PersonalInfo.Apptype}}">
+                        <label><input type="radio" ng-model="PersonalInfo.Apptype" value="Tenant" ng-click="radioClick($event);">tenant &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.Apptype" value="Tenant_co_tenant" ng-click="radioClick($event);">tenant with co-tenant &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.Apptype" value="Co_signer" ng-click="radioClick($event);">guarantor/co-signer</label>
                     </div>
                 </div>
             </div>
             <div class="row margin_top_8">
                 <div class="form-group col-sm-4">
                     <label class="control-label">B. Full Name:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.fullName" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.FullName" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Date of Birth:</label>
-                    <input type="date" class="form-control" ng-model="personalInfo.birthDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="PersonalInfo.BirthDate" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Social Security No.:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.ssn" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.Ssn" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>C. Driver License - No.:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.driverLicenseNo" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.DriverLicenseNo" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>State:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.driverLicenseState" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.DriverLicenseState" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Expiry Date:</label>
-                    <input type="date" class="form-control" ng-model="personalInfo.driverLicenseExpiryDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="PersonalInfo.DriverLicenseExpiryDate" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>D. Phone - Home:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.homePhone" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.HomePhone" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Work:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.workPhone" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.WorkPhone" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Other:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.otherPhone">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.OtherPhone">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>E. Email:</label>
-                    <input type="email" class="form-control" ng-model="personalInfo.email" ng-class="[requiredClass]">
+                    <input type="email" class="form-control" ng-model="PersonalInfo.Email" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-8">
                     <label>F. Name(s) of all other proposed occupant(s) and relationship to applicant:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.otherOccupants" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.OtherOccupants" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>G. Pet(s) or service animals (name and type):</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.pets" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.Pets" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-2">
                     <label>H. Auto - Make:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoMaker" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.AutoMaker" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Model:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoModel" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.AutoModel" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Year:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoYear" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.AutoYear" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>License No.:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoLicenseNo" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.AutoLicenseNo" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>State:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoState" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.AutoState" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Color:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.autoColor" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.AutoColor" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-8">
                     <label>Other vehicle(s):</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.otherVehicles">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.OtherVehicles">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-3">
                     <label>I. Emergency - Contact:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.emergencyContact" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.EmergencyContact" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-3">
                     <label>Relationship:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.emergencyRelationship" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.EmergencyRelationship" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-3">
                     <label>Address:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.emergencyAddress" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.EmergencyAddress" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-3">
                     <label>Phone:</label>
-                    <input type="text" class="form-control" ng-model="personalInfo.emergencyPhone" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="PersonalInfo.EmergencyPhone" ng-class="[requiredClass]">
                 </div>
             </div>
             <div class="row">
@@ -133,10 +133,10 @@
             <div class="row form-inline">
                 <div class="form-group col-sm-12">
                     <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]">
-                        <label><input type="radio" ng-model="personalInfo.useLiquidFurniture" value="no" ng-click="radioClick($event);">No &nbsp;</label>
-                        <label><input type="radio" ng-model="personalInfo.useLiquidFurniture" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.UseLiquidFurniture" value="no" ng-click="radioClick($event);">No &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.UseLiquidFurniture" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
                     </div>
-                    <span ng-show="personalInfo.useLiquidFurniture == 'yes'">Type: <input type="text" class="form-control" ng-model="personalInfo.liquidFurnitureType"></span>
+                    <span ng-show="PersonalInfo.UseLiquidFurniture == 'yes'">Type: <input type="text" class="form-control" ng-model="PersonalInfo.liquidFurnitureType"></span>
                 </div>
             </div>
             <div class="row margin_top_8">
@@ -147,10 +147,10 @@
             <div class="row form-inline">
                 <div class="form-group col-sm-12">
                     <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]">
-                        <label><input type="radio" ng-model="personalInfo.filedBanckruptcy" value="no" ng-click="radioClick($event);">No &nbsp;</label>
-                        <label><input type="radio" ng-model="personalInfo.filedBanckruptcy" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.FiledBanckruptcy" value="no" ng-click="radioClick($event);">No &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.FiledBanckruptcy" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
                     </div>
-                    <span ng-show="personalInfo.filedBanckruptcy == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="personalInfo.banckruptcyReason"></span>
+                    <span ng-show="PersonalInfo.FiledBanckruptcy == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="PersonalInfo.BanckruptcyReason"></span>
                 </div>
             </div>
             <div class="row margin_top_8">
@@ -161,10 +161,10 @@
             <div class="row form-inline">
                 <div class="form-group col-sm-12">
                     <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]">
-                        <label><input type="radio" ng-model="personalInfo.felony" value="no" ng-click="radioClick($event);">No &nbsp;</label>
-                        <label><input type="radio" ng-model="personalInfo.felony" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.Felony" value="no" ng-click="radioClick($event);">No &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.Felony" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
                     </div>
-                    <span ng-show="personalInfo.felony == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="personalInfo.felonyReason"></span>
+                    <span ng-show="PersonalInfo.Felony == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="PersonalInfo.FelonyReason"></span>
                 </div>
             </div>
             <div class="row margin_top_8">
@@ -175,10 +175,10 @@
             <div class="row form-inline">
                 <div class="form-group col-sm-12">
                     <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]">
-                        <label><input type="radio" ng-model="personalInfo.askedMoveout" value="no" ng-click="radioClick($event);">No &nbsp;</label>
-                        <label><input type="radio" ng-model="personalInfo.askedMoveout" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.AskedMoveout" value="no" ng-click="radioClick($event);">No &nbsp;</label>
+                        <label><input type="radio" ng-model="PersonalInfo.AskedMoveout" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
                     </div>
-                    <span ng-show="personalInfo.askedMoveout == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="personalInfo.moveoutReason"></span>
+                    <span ng-show="PersonalInfo.AskedMoveout == 'yes'">If yes, explain: <input type="text" class="form-control" ng-model="PersonalInfo.MoveoutReason"></span>
                 </div>
             </div>
         </div>

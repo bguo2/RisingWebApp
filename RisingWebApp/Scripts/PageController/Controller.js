@@ -25,9 +25,9 @@ function processAppForm($scope, formIdName, formNumber)
     if ($scope.$parent.curIndex > 0) {
         $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
     }
-    $scope.personalInfo = {};
-    $scope.application = {
-        "personalInfo": $scope.personalInfo
+    $scope.PersonalInfo = {};
+    $scope.Application = {
+        "PersonalInfo": $scope.PersonalInfo
     };
 
     $scope.personalInfoShow = false;
@@ -50,7 +50,7 @@ function processAppForm($scope, formIdName, formNumber)
     //the current application is enabled.
     $scope.$watch('$parent.applicationsNumber', function () {
         if (formNumber == $scope.$parent.applicationsNumber - 1) {
-            $scope.$parent.applications.push($scope.application);
+            $scope.$parent.Applications.push($scope.Application);
         }
     });
 }
@@ -64,7 +64,7 @@ app.controller('ApplicationForm0', function ($scope, $timeout) {
         }
     });
 
-    $scope.$watch('personalInfo', function (newValue, oldValue) {
+    $scope.$watch('PersonalInfo', function (newValue, oldValue) {
         if (Object.keys(newValue).length < 20) {
             return;
         }
@@ -95,15 +95,15 @@ app.controller('ApplicationForm3', function ($scope) {
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
     $scope.disableForms = true;
-    $scope.disableSubmit = true;
+    $scope.disableSubmit = false;
     $scope.disableBackToPrevious = true;
     $scope.disableNextApplication = true;
     $scope.disableAddAnother = true;
-    $scope.premises = {};
-    $scope.applications = [];
-    $scope.rentApplication = {
-        "premises": $scope.premises,
-        "applications": $scope.applications
+    $scope.Premises = {};
+    $scope.Applications = [];
+    $scope.RentApplication = {
+        "Premises": $scope.Premises,
+        "Applications": $scope.Applications
     };
     $scope.curIndex = 0;
     $scope.applicationsNumber = 1;
@@ -117,7 +117,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     $scope.requiredClass = "redbox";
     
     //basci section
-    $scope.$watch("premises", function (newValue, oldValue) {
+    $scope.$watch("Premises", function (newValue, oldValue) {
         if (Object.keys(newValue).length < 3) {
             return;
         }
@@ -199,12 +199,12 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //submit
     $scope.submitForm = function () {      
-        console.log($scope.rentApplication);
+
         $http({
             url: 'http://localhost:53651/api/Application',
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
-            data: JSON.stringify($scope.rentApplication)
+            data: JSON.stringify($scope.RentApplication)
         }).then(
             //successful
             function successCallback(response) {

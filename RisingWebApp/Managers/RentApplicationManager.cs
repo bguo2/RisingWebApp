@@ -20,8 +20,20 @@ namespace RisingWebApp.Managers
             _emailServer = emailServer;
         }
 
-        public async Task SendApplication(RentApplication application)
+        private string ValidateData(RentApplication application)
         {
+            var mainApp = application.Applications.ElementAt(0);
+            if (string.IsNullOrEmpty(mainApp.PersonalInfo.Email))
+                return "Email address is not specified.";
+            return "";
+        }
+
+        public async Task<string> SendApplication(RentApplication application)
+        {
+            var result = ValidateData(application);
+            if (!string.IsNullOrEmpty(result))
+                return result;
+
             var email = new Email.Email();
             var htmlBody = new StringBuilder();
             var mainApp = application.Applications.ElementAt(0);
@@ -35,6 +47,7 @@ namespace RisingWebApp.Managers
             htmlBody.Append("</body></html>");
             email.Body = htmlBody.ToString();
             await _emailServer.Send(email);
+            return "";
         }
     }
 }
