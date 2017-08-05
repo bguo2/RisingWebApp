@@ -28,6 +28,7 @@ namespace RisingWebApp.Models
         public string HomePhone { get; set; }
         public string WorkPhone { get; set; }
         public string OtherPhone { get; set; }
+        public string Email { get; set; }
         public string OtherOccupants { get; set; }
         public IEnumerable<Dependent> Dependents { get; set; }
         public IEnumerable<Pet> Pets { get; set; }

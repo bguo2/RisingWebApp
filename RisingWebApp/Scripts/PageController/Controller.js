@@ -200,7 +200,6 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     //submit
     $scope.submitForm = function () {      
         console.log($scope.rentApplication);
-        debugger;
         $http({
             url: 'http://localhost:53651/api/Application',
             method: 'post',
