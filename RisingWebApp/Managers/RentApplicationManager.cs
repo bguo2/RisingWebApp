@@ -13,7 +13,6 @@ namespace RisingWebApp.Managers
     public class RentApplicationManager : IRentApplicationManager
     {
         private readonly IEmailServer _emailServer;
-        private const string _emailHeader = "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>Rent Application</title></head>";
 
         public RentApplicationManager(IEmailServer emailServer)
         {
@@ -41,10 +40,8 @@ namespace RisingWebApp.Managers
             email.To = mainApp.PersonalInfo.Email;
             email.IsBodyHtml = true;
             email.Subject = "Rent Application For " + application.Premises.Address;
-            htmlBody.AppendFormat("%s<body>", _emailHeader);
             //body
 
-            htmlBody.Append("</body></html>");
             email.Body = htmlBody.ToString();
             await _emailServer.Send(email);
             return "";

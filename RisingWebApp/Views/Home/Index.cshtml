@@ -3,45 +3,6 @@
     ViewBag.Title = "Home Page";
 }
 
-<style>
-    .yellow_background {
-        background-color:#ffffcc;
-    }
-    .white_backgroud {
-        background-color:white;
-    }
-    .green_background {
-        background-color:LimeGreen;
-    }
-    .right {
-        float:right;
-    }
-    .panel_margin {
-        margin-top:-20px; 
-    }
-    .panel_default_margin {
-        margin-top:-18px;
-    }
-    .point_cursor {
-        cursor:pointer;
-    }
-    .margin_top_8 {
-        margin-top:8px;
-    }
-    .disabled {
-      opacity: 0.5;
-      pointer-events: none;
-      > * {
-        opacity: 0.5;
-        pointer-events: none;
-      }
-    }
-    .redbox{
-        border: 1px solid red;
-    }
-</style>
-
-
 <div ng-controller="HomeController">
     <div ng-view></div>
 </div>

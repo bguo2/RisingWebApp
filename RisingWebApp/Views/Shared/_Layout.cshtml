@@ -13,7 +13,58 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
 
 </head>
+
 <body ng-app="RisingWebApp">
+    <style>
+        .yellow_background {
+            background-color: #ffffcc;
+        }
+
+        .white_backgroud {
+            background-color: white;
+        }
+
+        .green_background {
+            background-color: LimeGreen;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .panel_margin {
+            margin-top: -20px;
+        }
+
+        .panel_default_margin {
+            margin-top: -18px;
+        }
+
+        .point_cursor {
+            cursor: pointer;
+        }
+
+        .margin_top_8 {
+            margin-top: 8px;
+        }
+
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            > *;
+
+        {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        }
+
+        .redbox {
+            border: 1px solid red;
+        }
+    </style>
+
     <div class="container body-content">
         @RenderBody()
         <footer align="center">
