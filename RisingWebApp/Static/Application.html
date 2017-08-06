@@ -10,7 +10,7 @@
             <div class="row form-inline">
                 <div class="form-group col-sm-12">
                     <label class="control-label">A. Applicant is completing application as &nbsp;</label>
-                    <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]" ng-init="{{PersonalInfo.Apptype}}">
+                    <div class="radio" style="margin-top:-5px;" ng-class="[requiredClass]" >
                         <label><input type="radio" ng-model="PersonalInfo.Apptype" value="Tenant" ng-click="radioClick($event);">tenant &nbsp;</label>
                         <label><input type="radio" ng-model="PersonalInfo.Apptype" value="Tenant_co_tenant" ng-click="radioClick($event);">tenant with co-tenant &nbsp;</label>
                         <label><input type="radio" ng-model="PersonalInfo.Apptype" value="Co_signer" ng-click="radioClick($event);">guarantor/co-signer</label>

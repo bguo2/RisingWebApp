@@ -162,7 +162,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
     <Folder Include="Content\" />
-    <Folder Include="Static\EmailTemplate\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -203,6 +202,7 @@
     <Content Include="Scripts\PageRouting\Routing.js" />
     <Content Include="Static\Application.html" />
     <Content Include="Static\Applications.html" />
+    <Content Include="Static\EmailTemplate\RentApplication.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

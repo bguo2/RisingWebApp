@@ -34,14 +34,7 @@ function processAppForm($scope, formIdName, formNumber)
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
-
-    if (formNumber === 0) {
-        $scope.requiredClass = "redbox";
-    }
-    else {
-        $scope.requiredClass = "";
-    }
-        
+       
     //radio clcik
     $scope.radioClick = function (event) {
         $(event.target).closest('div').removeClass("redbox");
@@ -201,7 +194,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     $scope.submitForm = function () {      
 
         $http({
-            url: 'http://localhost:53651/api/Application',
+            url: '/api/Application',
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             data: JSON.stringify($scope.RentApplication)

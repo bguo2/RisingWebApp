@@ -56,6 +56,17 @@ namespace RisingWebApp.Email
             message.Subject = email.Subject;
             message.Body = email.Body;
             message.IsBodyHtml = email.IsBodyHtml;
+
+            //attachments
+            if(email.AttachmentFiles.Count() > 0)
+            {
+                foreach(var file in email.AttachmentFiles)
+                {
+                    var attachment = new Attachment(file);
+                    message.Attachments.Add(attachment);
+                }
+            }
+
             await client.SendMailAsync(message);
         }
     }

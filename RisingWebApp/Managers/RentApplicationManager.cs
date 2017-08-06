@@ -43,8 +43,27 @@ namespace RisingWebApp.Managers
             //body
 
             email.Body = htmlBody.ToString();
+
+            //attachments
+            var files = new List<string>();
+            files.Add(ConvertApplicationToHtml(application));
+            email.AttachmentFiles = files;
+
             await _emailServer.Send(email);
             return "";
+        }
+
+        //replace Angular place holders.
+        private string ConvertApplicationToHtml(RentApplication application)
+        {
+            var curPath = HttpContext.Current.Server.MapPath("~/Static/EmailTemplate");
+            var templateFile = string.Format("{0}\\RentApplication.html", curPath);
+
+            var tempPath = HttpRuntime.CodegenDir;
+
+
+
+            return templateFile;
         }
     }
 }
