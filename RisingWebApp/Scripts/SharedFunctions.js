@@ -37,3 +37,10 @@ function nextButtonAction($scope) {
         $scope.formShow[i] = false;
     }
 }
+
+function changeBlockClass(formIdName, subElement, removeClassName, addClassName)
+{
+    var find = $(formIdName + ' ' + subElement);
+    find.removeClass(removeClassName);
+    find.addClass(addClassName);
+}

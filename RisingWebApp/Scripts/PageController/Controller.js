@@ -27,11 +27,14 @@ function processAppForm($scope, formIdName, formNumber)
         $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
     }
     $scope.PersonalInfo = {};
+    $scope.ResidenceHistory = {};
     $scope.Application = {
-        "PersonalInfo": $scope.PersonalInfo
+        "PersonalInfo": $scope.PersonalInfo,
+        "ResidenceHistory": $scope.Residence
     };
 
     $scope.personalInfoShow = false;
+    $scope.residenceShow = false;
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }

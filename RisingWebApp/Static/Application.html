@@ -184,8 +184,116 @@
         </div>
     </div>
 </div>
-<div class="panel panel-default yellow_background panel_default_margin ">
-    <div class="panel-body">
+<div class="panel panel-default yellow_background panel_default_margin" id="residenceHistoryDiv">
+    <div class="panel-body point_cursor" ng-click="residenceHistoryDivClick();">
         <b>3. RESIDENCE HISTORY</b>
+        <span ng-hide="residenceShow" class="glyphicon glyphicon-menu-down right"></span>
+        <span ng-show="residenceShow" class="glyphicon glyphicon-menu-up right"></span>
+    </div>
+    <div ng-show="residenceShow" class="slideDown panel-default panel_margin">
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-sm-2">
+                    <label>Current address:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.CurAddress" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>City:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.CurAddressCity" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>State:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.CurAddressState" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Zip:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.CurAddressZip" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>From:</label>
+                    <input type="date" class="form-control" ng-model="ResidenceHistory.CurAddressFrom" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>To:</label>
+                    <input type="date" class="form-control" ng-model="ResidenceHistory.CurAddressTo" ng-class="[requiredClass]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-2">
+                    <label>Name of Landlord/Manager:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.CurLandlord" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Landlord/Manager's phone:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.CurLandlord" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Landlord/Manager's phone:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.CurLandlord" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label class="control-label">Do you own this property? &nbsp;</label>
+                    <div class="radio" style="margin-top:8px;" ng-class="[requiredClass]">
+                        <label><input type="radio" ng-model="ResidenceHistory.OwnCurProperty" value="no" ng-click="radioClick($event);">No &nbsp;</label>
+                        <label><input type="radio" ng-model="ResidenceHistory.OwnCurProperty" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4" style="margin-top:20px;">
+                    <label>Reason for leaving current address:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.CurAddrLeavingReason" ng-class="[requiredClass]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-2">
+                    <label>Previous address:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.PreAddress">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>City:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.PreAddressCity">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>State:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.PreAddressState">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Zip:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.PreAddressZip">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>From:</label>
+                    <input type="date" class="form-control" ng-model="ResidenceHistory.PreAddressFrom">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>To:</label>
+                    <input type="date" class="form-control" ng-model="ResidenceHistory.PreAddressTo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-2">
+                    <label>Name of Landlord/Manager:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.PreLandlord">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Landlord/Manager's phone:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.PreLandlord">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Landlord/Manager's phone:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.PreLandlord">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label class="control-label">Do you own this property? &nbsp;</label>
+                    <div class="radio" style="margin-top:8px;">
+                        <label><input type="radio" ng-model="ResidenceHistory.OwnPreProperty" value="no" ng-click="radioClick($event);">No &nbsp;</label>
+                        <label><input type="radio" ng-model="ResidenceHistory.OwnPreProperty" value="yes" ng-click="radioClick($event);">Yes &nbsp;</label>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4" style="margin-top:20px;">
+                    <label>Reason for leaving this address:</label>
+                    <input type="text" class="form-control" ng-model="ResidenceHistory.PreAddrLeavingReason">
+                </div>
+            </div>
+        </div>
     </div>
 </div>

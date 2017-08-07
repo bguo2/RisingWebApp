@@ -31,10 +31,10 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
                 $scope.$parent.applicationDescription = "Main Application";
             }
             $scope.PersonalInfo = $scope.$parent.Applications[formNumber].PersonalInfo;
+            $scope.ResidenceHistory = $scope.$parent.Applications[formNumber].ResidenceHistory;
             $timeout(function () {
-                var find = $(formIdName + ' #personalInfoDiv');
-                find.removeClass("yellow_background");
-                find.addClass("green_background");
+                changeBlockClass(formIdName, '#personalInfoDiv', 'yellow_background', 'green_background');
+                changeBlockClass(formIdName, '#residenceHistoryDiv', 'yellow_background', 'green_background');
             }, 100);
         }
     });
@@ -42,6 +42,9 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
     $scope.personalInfoShow = false;
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
+    }
+    $scope.residenceHistoryDivClick = function () {
+        $scope.residenceShow = !$scope.residenceShow;
     }
 
     //radio clcik
