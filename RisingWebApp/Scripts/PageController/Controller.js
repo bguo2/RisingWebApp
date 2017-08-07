@@ -22,6 +22,7 @@ app.directive('input', function() {
 
 function processAppForm($scope, formIdName, formNumber)
 {
+    $scope.disableInput = false;
     if ($scope.$parent.curIndex > 0) {
         $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
     }
@@ -88,7 +89,6 @@ app.controller('ApplicationForm3', function ($scope) {
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
     $scope.disableForms = true;
-    $scope.disableInput = false;
     $scope.disableSubmit = false;
     $scope.disableBackToPrevious = true;
     $scope.disableNextApplication = true;

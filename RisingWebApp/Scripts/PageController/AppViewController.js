@@ -1,11 +1,22 @@
 ﻿var app = angular.module('RisingWebApp');
 
-function viewAppForm($scope, formIdName, formNumber) {
+function viewAppForm($scope, formIdName, formNumber, $timeout) {
     if ($scope.$parent.curIndex > 0) {
         $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
     }
 
-    $scope.personalInfoShow = true;
+    $scope.$watch('$parent.curIndex', function () {
+        if ($scope.$parent.curIndex == formNumber) {
+            $scope.PersonalInfo = $scope.$parent.Applications[formNumber].PersonalInfo;
+            $timeout(function () {
+                var find = $(formIdName + ' #personalInfoDiv');
+                find.removeClass("yellow_background");
+                find.addClass("green_background");
+            }, 100);
+        }
+    });
+
+    $scope.personalInfoShow = false;
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
@@ -15,20 +26,20 @@ function viewAppForm($scope, formIdName, formNumber) {
     }
 }
 
-app.controller('ApplicationForm00', function ($scope) {
-    viewAppForm($scope, '#form0', 0);
+app.controller('ApplicationForm00', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
+    viewAppForm($scope, '#form0', 0, $timeout);
 });
 
-app.controller('ApplicationForm01', function ($scope) {
-    viewAppForm($scope, '#form1', 1);
+app.controller('ApplicationForm01', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
+    viewAppForm($scope, '#form1', 1, $timeout);
 });
 
-app.controller('ApplicationForm02', function ($scope) {
-    viewAppForm($scope, '#form2', 2);
+app.controller('ApplicationForm02', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
+    viewAppForm($scope, '#form2', 2, $timeout);
 });
 
-app.controller('ApplicationForm03', function ($scope) {
-    viewAppForm($scope, '#form3', 3);
+app.controller('ApplicationForm03', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
+    viewAppForm($scope, '#form3', 3, $timeout);
 });
 
 app.controller('AppViewController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
@@ -40,6 +51,7 @@ app.controller('AppViewController', function ($scope, $rootScope, $location, $fi
     $scope.applicationsNumber = 1;
     $scope.curIndex = 0;
     $scope.applicationDescription = "Main Application";
+    $scope.formShow = [];
 
     //error?
     $scope.showErrorMsg = false;
@@ -48,6 +60,9 @@ app.controller('AppViewController', function ($scope, $rootScope, $location, $fi
         $scope.errorMsga = errorMsg;
         $scope.applicationsNumber = 1;
         $scope.total = 1;
+        for (i = 0; i < 4; i++) {
+            $scope.formShow[i] = false;
+        }
     }
     else {
         var rentApplication = JSON.parse(rentAppData);
@@ -55,13 +70,11 @@ app.controller('AppViewController', function ($scope, $rootScope, $location, $fi
         $scope.Applications = rentApplication.Applications;
         $scope.applicationsNumber = rentApplication.Applications.length;
         $scope.total = $scope.applicationsNumber;
-    }
 
-
-    $scope.formShow = [];
-    $scope.formShow[0] = true;
-    for (i = 1; i < $scope.total; i++) {
-        $scope.formShow[i] = false;
+        $scope.formShow[0] = true;
+        for (i = 1; i < $scope.total; i++) {
+            $scope.formShow[i] = false;
+        }
     }
 
     $scope.backToPrevious = function () {
