@@ -1,5 +1,20 @@
 ﻿var app = angular.module('RisingWebApp');
 
+if (window.JSON && !window.JSON.dateParser) {
+    var reISO = /(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})Z/;
+
+    JSON.dateParser = function (key, value) {
+        debugger;
+        if (typeof value === 'string') {
+            var a = reISO.exec(value);
+            if (a)
+                return new Date(value);
+        }
+        return value;
+    };
+
+}
+
 function viewAppForm($scope, formIdName, formNumber, $timeout) {
     if ($scope.$parent.curIndex > 0) {
         $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
@@ -65,8 +80,8 @@ app.controller('AppViewController', function ($scope, $rootScope, $location, $fi
         }
     }
     else {
-        var rentApplication = JSON.parse(rentAppData);
-        $scope.Premises = rentApplication.Premises;
+        var rentApplication = JSON.parse(rentAppData, JSON.dateParser);
+        $scope.Premises = rentApplication.Premises;        
         $scope.Applications = rentApplication.Applications;
         $scope.applicationsNumber = rentApplication.Applications.length;
         $scope.total = $scope.applicationsNumber;
