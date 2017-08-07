@@ -4,11 +4,18 @@ if (window.JSON && !window.JSON.dateParser) {
     var reISO = /(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})Z/;
 
     JSON.dateParser = function (key, value) {
-        debugger;
         if (typeof value === 'string') {
             var a = reISO.exec(value);
-            if (a)
+            if (a) {
                 return new Date(value);
+            }
+        }
+        else if (typeof value === 'boolean')
+        {
+            if (value) {
+                return "yes";
+            }
+            return "no";
         }
         return value;
     };
@@ -16,12 +23,13 @@ if (window.JSON && !window.JSON.dateParser) {
 }
 
 function viewAppForm($scope, formIdName, formNumber, $timeout) {
-    if ($scope.$parent.curIndex > 0) {
-        $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
-    }
-
     $scope.$watch('$parent.curIndex', function () {
         if ($scope.$parent.curIndex == formNumber) {
+            if (formNumber != 0) {
+                $scope.$parent.applicationDescription = "Application " + (formNumber + 1);
+            } else {
+                $scope.$parent.applicationDescription = "Main Application";
+            }
             $scope.PersonalInfo = $scope.$parent.Applications[formNumber].PersonalInfo;
             $timeout(function () {
                 var find = $(formIdName + ' #personalInfoDiv');
@@ -57,12 +65,10 @@ app.controller('ApplicationForm03', function ($scope, $rootScope, $location, $fi
     viewAppForm($scope, '#form3', 3, $timeout);
 });
 
-app.controller('AppViewController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
-    
+app.controller('AppViewController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {    
     $scope.disableBackToPrevious = true;
     $scope.disableNextApplication = true;
     $scope.disableForms = false;
-    $scope.disableInput = true;
     $scope.applicationsNumber = 1;
     $scope.curIndex = 0;
     $scope.applicationDescription = "Main Application";
@@ -89,6 +95,9 @@ app.controller('AppViewController', function ($scope, $rootScope, $location, $fi
         $scope.formShow[0] = true;
         for (i = 1; i < $scope.total; i++) {
             $scope.formShow[i] = false;
+        }
+        if ($scope.total > 1) {
+            $scope.disableNextApplication = false;
         }
     }
 
