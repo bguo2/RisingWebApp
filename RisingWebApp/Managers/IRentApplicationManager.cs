@@ -10,5 +10,6 @@ namespace RisingWebApp.Managers
     public interface IRentApplicationManager
     {
         Task<string> SendApplication(RentApplication application);
+        Task<string> GetApplicationData(string appId);
     }
 }

@@ -12,6 +12,10 @@
             templateUrl: '/Static/Applications.html',
             controller: 'HomeController'
         })
+        .when('/Home/ViewApplication', {
+            templateUrl: '/Static/ViewApplication.html',
+            controller: 'AppViewController'
+        })
         .otherwise({   // This is when any route not matched => error
             controller: 'ErrorController'
         })

@@ -1,10 +1,13 @@
 ﻿
-<div style="padding-top:20px">
-    <b>THIS SECTION TO BE COMPLETED BY APPLICANT. A SEPARATE APPLICATION TO RENT IS REQUIRED FOR EACH OCCUPANT 18 YEARS OF AGE OR OVER, OR AN EMANCIPATED MINOR.</b>
+<div style="padding-top:20px;margin-bottom:10px">
+    <div ng-show="showErrorMsg" style="color:red">
+        {{errorMsga}}
+        <br />
+    </div>
 </div>
 
-<form novalidate id="form" ng-submit="submitForm()">
-    <div class="panel panel-default yellow_background" id="premises">
+<form novalidate id="form">
+    <div class="panel panel-default green_background" id="premises">
         <div class="panel-body">
             <div class="form-group" style="margin-bottom:-1px">
                 <label>1. PREMISES INFORMATION</label>
@@ -30,17 +33,16 @@
     </div>
 
     <div ng-disabled="disableForms" ng-class="{'disabled': disableForms}">
-        <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm0" ng-show="formShow[0]" id="form0"></div>
-        <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm1" ng-show="formShow[1]" id="form1"></div>
-        <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm2" ng-show="formShow[2]" id="form2"></div>
-        <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm3" ng-show="formShow[3]" id="form3"></div>
+        <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm00" ng-show="formShow[0]" id="form0"></div>
+        <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm01" ng-show="formShow[1]" id="form1"></div>
+        <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm02" ng-show="formShow[2]" id="form2"></div>
+        <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm03" ng-show="formShow[3]" id="form3"></div>
     </div>
+
     <div class="panel">
         <div class="panel-body" align="center">
-            <button type="submit" class="btn btn-primary" ng-disabled="disableSubmit">Submit</button>
             <button type="button" class="btn btn-primary" ng-click="backToPrevious();" ng-disabled="disableBackToPrevious"><< Previous</button>
             <button type="button" class="btn btn-primary" ng-click="nextApplication();" ng-disabled="disableNextApplication">Next >></button>
-            <button type="button" class="btn btn-primary" ng-click="addAnotherApplication();" ng-disabled="disableAddAnother">Add Another Application</button>
         </div>
     </div>
 </form>

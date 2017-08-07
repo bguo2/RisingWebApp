@@ -88,6 +88,7 @@ app.controller('ApplicationForm3', function ($scope) {
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
     $scope.disableForms = true;
+    $scope.disableInput = false;
     $scope.disableSubmit = false;
     $scope.disableBackToPrevious = true;
     $scope.disableNextApplication = true;
@@ -144,43 +145,12 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //back to previous
     $scope.backToPrevious = function () {
-        $scope.curIndex--;
-        if ($scope.curIndex == 0) {
-            $scope.disableBackToPrevious = true;
-        }
-        if ($scope.curIndex <= $scope.applicationsNumber - 1) {
-            $scope.disableNextApplication = false;
-        }
-        else {
-            $scope.disableNextApplication = true;
-        }
-
-        $scope.formShow[$scope.curIndex] = true;
-        for (i = 0; i < $scope.total; i++) {
-            if (i == $scope.curIndex) {
-                continue;
-            }
-            $scope.formShow[i] = false;
-        }
+        previousButtonAction($scope);
     }
 
     //next application
     $scope.nextApplication = function () {
-        $scope.curIndex++;
-        $scope.formShow[$scope.curIndex] = true;
-        if ($scope.curIndex >= $scope.applicationsNumber - 1) {
-            $scope.disableNextApplication = true;
-        }
-        else {
-            $scope.disableNextApplication = false;
-        }
-        $scope.disableBackToPrevious = false;
-        for (i = 0; i < $scope.total; i++) {
-            if (i == $scope.curIndex) {
-                continue;
-            }
-            $scope.formShow[i] = false;
-        }
+        nextButtonAction($scope);
     }
 
     $scope.enableButtons = function () {

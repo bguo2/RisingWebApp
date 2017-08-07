@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Rent Application Page";
+}
+
+<div ng-controller="AppViewController">
+    <div ng-view></div>
+</div>
+
+<script type="text/javascript">
+    var rentAppData = '@Html.Raw(ViewBag.ApplicationData)';
+    var errorMsg = '@Html.Raw(ViewBag.ApplicationError)';
+</script>
+<script src="~/Scripts/PageRouting/Routing.js"></script>
+<script src="~/Scripts/SharedFunctions.js"></script>
+<script src="~/Scripts/PageController/AppViewController.js"></script>

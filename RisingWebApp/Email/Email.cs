@@ -15,5 +15,10 @@ namespace RisingWebApp.Email
         public string Body { get; set; }
         public bool IsBodyHtml { get; set; }
         public IEnumerable<string> AttachmentFiles { get; set; }
+
+        public Email()
+        {
+            AttachmentFiles = new List<string>();
+        }
     }
 }
