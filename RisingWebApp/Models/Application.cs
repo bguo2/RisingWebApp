@@ -8,5 +8,6 @@ namespace RisingWebApp.Models
     public class Application
     {
         public PersonalInfo PersonalInfo { get; set; }
+        public ResidenceHistory ResidenceHistory { get; set; }
     }
 }

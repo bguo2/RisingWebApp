@@ -13,9 +13,9 @@ if (window.JSON && !window.JSON.dateParser) {
         else if (typeof value === 'boolean')
         {
             if (value) {
-                return "yes";
+                return "true";
             }
-            return "no";
+            return "false";
         }
         return value;
     };

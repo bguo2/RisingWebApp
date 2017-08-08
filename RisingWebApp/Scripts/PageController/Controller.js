@@ -30,13 +30,16 @@ function processAppForm($scope, formIdName, formNumber)
     $scope.ResidenceHistory = {};
     $scope.Application = {
         "PersonalInfo": $scope.PersonalInfo,
-        "ResidenceHistory": $scope.Residence
+        "ResidenceHistory": $scope.ResidenceHistory
     };
 
     $scope.personalInfoShow = false;
     $scope.residenceShow = false;
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
+    }
+    $scope.residenceHistoryDivClick = function () {
+        $scope.residenceShow = !$scope.residenceShow;
     }
        
     //radio clcik
@@ -57,25 +60,10 @@ app.controller('ApplicationForm0', function ($scope, $timeout) {
     //listen to the parent event
     $scope.$on('premisesDoneEvent', function (event, args) {
         if ($scope.$parent.curIndex === 0) {
+            $scope.$parent.enableButtons();
             $scope.personalInfoShow = true;
         }
     });
-
-    $scope.$watch('PersonalInfo', function (newValue, oldValue) {
-        if (Object.keys(newValue).length < 20) {
-            return;
-        }
-        $timeout(function () {
-            var incompletes = $('#form0 #personalInfoDiv .redbox');
-            if (incompletes.length == 0) {
-                $scope.$parent.enableButtons();
-                var find = $('#form0 #personalInfoDiv');
-                find.removeClass("yellow_background");
-                find.addClass("green_background");
-            }
-        }, 100);
-    }, true);
-
 });
 
 app.controller('ApplicationForm1', function ($scope) {
@@ -121,9 +109,9 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
         $timeout(function () {
             var incompletes = $('#premises .redbox');
             if (incompletes.length == 0) {
-                var find = $('#premises');
-                find.removeClass("yellow_background");
-                find.addClass("green_background");
+                //var find = $('#premises');
+                //find.removeClass("yellow_background");
+                //find.addClass("green_background");
                 $scope.disableForms = false;
                 $scope.$broadcast('premisesDoneEvent', true);
             }
@@ -157,15 +145,15 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     }
 
     $scope.enableButtons = function () {
-        if ($('#premises').hasClass('green_background')) {
+        //if ($('#premises').hasClass('green_background')) {
             $scope.disableSubmit = false;
             $scope.disableAddAnother = false;
-        }
+        //}
     }
 
     //submit
     $scope.submitForm = function () {      
-
+        debugger;
         $http({
             url: '/api/Application',
             method: 'post',
