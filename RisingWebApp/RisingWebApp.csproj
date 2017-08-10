@@ -184,12 +184,14 @@
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Auto.cs" />
     <Compile Include="Models\Dependent.cs" />
+    <Compile Include="Models\DriverLicense.cs" />
     <Compile Include="Models\EmergencyContact.cs" />
+    <Compile Include="Models\Employment.cs" />
     <Compile Include="Models\PersonalInfo.cs" />
     <Compile Include="Models\Pet.cs" />
     <Compile Include="Models\Premises.cs" />
     <Compile Include="Models\RentApplication.cs" />
-    <Compile Include="Models\ResidenceHistory.cs" />
+    <Compile Include="Models\Residence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

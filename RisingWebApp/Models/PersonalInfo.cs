@@ -22,9 +22,7 @@ namespace RisingWebApp.Models
         public string FullName { get; set; }
         public DateTime BirthDate { get; set; }
         public string Ssn { get; set; }
-        public string DriverLicenseNo { get; set; }
-        public string DriverLicenseState { get; set; }
-        public string DriverLicenseExpiryDate { get; set; }
+        public DriverLicense DriverLicense { get; set; }
         public string HomePhone { get; set; }
         public string WorkPhone { get; set; }
         public string OtherPhone { get; set; }
@@ -32,22 +30,9 @@ namespace RisingWebApp.Models
         public string OtherOccupants { get; set; }
 
         public string Pets { get; set; }
-        public string AutoMaker { get; set; }
-        public string AutoModel { get; set; }
-        public string AutoYear { get; set; }
-        public string AutoLicenseNo { get; set; }
-        public string AutoState { get; set; }
-        public string AutoColor { get; set; }
+        public Auto AutoInfo { get; set; }
         public string OtherVehicles { get; set; }
-        public string EmergencyContact { get; set; }
-        public string EmergencyRelationship { get; set; }
-        public string EmergencyAddress { get; set; }
-        public string EmergencyPhone { get; set; }
-
-        //public IEnumerable<Dependent> Dependents { get; set; }
-        //public IEnumerable<Pet> Pets { get; set; }
-        //public IEnumerable<Auto> Autos { get; set; }
-        //public EmergencyContact EmergencyContact { get; set; }
+        public EmergencyContact Emergency { get; set; }
 
         public bool UseLiquidFurniture { get; set; }
         public string LiquidFurnitureType { get; set; }

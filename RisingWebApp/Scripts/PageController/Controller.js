@@ -27,11 +27,23 @@ function processAppForm($scope, formIdName, formNumber)
         $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
     }
     $scope.PersonalInfo = {};
-    $scope.ResidenceHistory = {};
+    $scope.PersonalInfo.DriverLicense = {};
+    $scope.PersonalInfo.AutoInfo = {};
+    $scope.PersonalInfo.Emergency = {};
+    $scope.ResidenceHistory = [];
+    $scope.ResidenceHistory[0] = {};
+    $scope.ResidenceHistory[1] = {};
+    $scope.EmploymentHistory = [];
+    $scope.EmploymentHistory[0] = {};
+    $scope.EmploymentHistory[1] = {};
     $scope.Application = {
         "PersonalInfo": $scope.PersonalInfo,
-        "ResidenceHistory": $scope.ResidenceHistory
+        "ResidenceHistory": $scope.ResidenceHistory,
+        "EmploymentHistory": $scope.EmploymentHistory
     };
+    $scope.incomeTypes = ['Week', 'Bi-Weeks', '3-Weeks', 'Month', 'Year'];
+    $scope.EmploymentHistory[0].IncomeType = $scope.incomeTypes[0];
+    $scope.EmploymentHistory[1].IncomeType = $scope.incomeTypes[0];
 
     $scope.personalInfoShow = false;
     $scope.residenceShow = false;
@@ -40,6 +52,9 @@ function processAppForm($scope, formIdName, formNumber)
     }
     $scope.residenceHistoryDivClick = function () {
         $scope.residenceShow = !$scope.residenceShow;
+    }
+    $scope.employmentDivClick = function () {
+        $scope.employmentShow = !$scope.employmentShow;
     }
        
     //radio clcik
