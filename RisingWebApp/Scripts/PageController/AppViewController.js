@@ -33,6 +33,7 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
             $scope.PersonalInfo = $scope.$parent.Applications[formNumber].PersonalInfo;
             $scope.ResidenceHistory = $scope.$parent.Applications[formNumber].ResidenceHistory;
             $scope.EmploymentHistory = $scope.$parent.Applications[formNumber].EmploymentHistory;
+            $scope.CreditInfo = $scope.$parent.Applications[formNumber].CreditInfo;
             /*$timeout(function () {
                 changeBlockClass(formIdName, '#personalInfoDiv', 'yellow_background', 'green_background');
                 changeBlockClass(formIdName, '#residenceHistoryDiv', 'yellow_background', 'green_background');
@@ -43,6 +44,7 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
     $scope.personalInfoShow = false;
     $scope.residenceShow = false;
     $scope.employmentShow = false;
+    $scope.creditInfoShow = false;
     $scope.incomeTypes = ['Week', 'Bi-Weeks', '3-Weeks', 'Month', 'Year'];
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
@@ -52,6 +54,9 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
     }
     $scope.employmentDivClick = function () {
         $scope.employmentShow = !$scope.employmentShow;
+    }
+    $scope.creditInfoDivClick = function () {
+        $scope.creditInfoShow = !$scope.creditInfoShow;
     }
 
     //radio clcik

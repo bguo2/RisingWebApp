@@ -36,10 +36,15 @@ function processAppForm($scope, formIdName, formNumber)
     $scope.EmploymentHistory = [];
     $scope.EmploymentHistory[0] = {};
     $scope.EmploymentHistory[1] = {};
+    $scope.CreditInfo = [];
+    $scope.CreditInfo[0] = {};
+    $scope.CreditInfo[1] = {};
+    $scope.CreditInfo[2] = {};
     $scope.Application = {
         "PersonalInfo": $scope.PersonalInfo,
         "ResidenceHistory": $scope.ResidenceHistory,
-        "EmploymentHistory": $scope.EmploymentHistory
+        "EmploymentHistory": $scope.EmploymentHistory,
+        "CreditInfo": $scope.CreditInfo
     };
     $scope.incomeTypes = ['Week', 'Bi-Weeks', '3-Weeks', 'Month', 'Year'];
     $scope.EmploymentHistory[0].IncomeType = $scope.incomeTypes[0];
@@ -47,6 +52,8 @@ function processAppForm($scope, formIdName, formNumber)
 
     $scope.personalInfoShow = false;
     $scope.residenceShow = false;
+    $scope.employmentShow = false;
+    $scope.creditInfoShow = false;
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
@@ -55,6 +62,9 @@ function processAppForm($scope, formIdName, formNumber)
     }
     $scope.employmentDivClick = function () {
         $scope.employmentShow = !$scope.employmentShow;
+    }
+    $scope.creditInfoDivClick = function () {
+        $scope.creditInfoShow = !$scope.creditInfoShow;
     }
        
     //radio clcik

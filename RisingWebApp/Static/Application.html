@@ -380,3 +380,68 @@
         </div>
     </div>
 </div>
+<div class="panel panel-default grey_background panel_default_margin" id="employmentHistoryDiv">
+    <div class="panel-body point_cursor" ng-click="creditInfoDivClick();">
+        <b>5. CREDIT INFORMATION</b>
+        <span ng-hide="creditInfoShow" class="glyphicon glyphicon-menu-down right"></span>
+        <span ng-show="creditInfoShow" class="glyphicon glyphicon-menu-up right"></span>
+    </div>
+    <div ng-show="creditInfoShow" class="slideDown panel-default panel_margin">
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>Name of creditor:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[0].Name" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Account number:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[0].AccountNumber" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Monthly payment:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[0].MonthlyPayment" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>BalanceDue:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[0].BalanceDue" ng-class="[requiredClass]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>Name of creditor:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[1].Name" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Account number:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[1].AccountNumber" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Monthly payment:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[1].MonthlyPayment" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>BalanceDue:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[1].BalanceDue" ng-class="[requiredClass]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>Name of creditor:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[2].Name" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Account number:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[2].AccountNumber" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Monthly payment:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[2].MonthlyPayment" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>BalanceDue:</label>
+                    <input type="text" class="form-control" ng-model="CreditInfo[2].BalanceDue" ng-class="[requiredClass]">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
