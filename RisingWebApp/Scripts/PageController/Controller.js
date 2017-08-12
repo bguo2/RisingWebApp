@@ -74,6 +74,7 @@ function processAppForm($scope, formIdName, formNumber, $filter)
     $scope.referenceShow = false;
     $scope.relativeShow = false;
     $scope.agreementShow = false;
+    $scope.documentsShow = false;
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
@@ -95,6 +96,9 @@ function processAppForm($scope, formIdName, formNumber, $filter)
     $scope.agreementDivClick = function () {
         $scope.agreementShow = !$scope.agreementShow;
     }
+    $scope.documentsDivClick = function () {
+        $scope.documentsShow = !$scope.documentsShow;
+    }
        
     //radio clcik
     $scope.radioClick = function (event) {
@@ -111,6 +115,19 @@ function processAppForm($scope, formIdName, formNumber, $filter)
             $(event.target).closest('span').addClass("redbox");
         }
     }
+
+    //browse file
+    $scope.browseFile = function (event) {
+        var file = $(event.target).parent().parent().parent().find('.file');
+        file.trigger('click');
+    }
+    $(document).on('change', '.file', function () {
+        var target = $(this).parent().find('.form-control');
+        target.val($(this).val().replace(/C:\\fakepath\\/i, ''));
+        if (target.val().length > 0) {
+            target.removeClass("redbox");
+        }
+    });
 
     //the current application is enabled.
     $scope.$watch('$parent.applicationsNumber', function () {
