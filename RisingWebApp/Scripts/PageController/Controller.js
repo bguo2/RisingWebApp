@@ -121,13 +121,16 @@ function processAppForm($scope, formIdName, formNumber, $filter)
         var file = $(event.target).parent().parent().parent().find('.file');
         file.trigger('click');
     }
-    $(document).on('change', '.file', function () {
-        var target = $(this).parent().find('.form-control');
-        target.val($(this).val().replace(/C:\\fakepath\\/i, ''));
+ 
+    $scope.onUploadFile = function (files, element) {
+        var target = $(element).parent().find('.form-control');
+        target.val($(element).val().replace(/C:\\fakepath\\/i, ''));
         if (target.val().length > 0) {
             target.removeClass("redbox");
+            var fd = new FormData();
+            fd.append(element.name, files[0]);
         }
-    });
+    }
 
     //the current application is enabled.
     $scope.$watch('$parent.applicationsNumber', function () {

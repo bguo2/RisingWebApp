@@ -655,7 +655,7 @@
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>1) Copy of driver's license or picture identification:</label>
-                    <input type="file" class="file">
+                    <input type="file" class="file" name="IdentityFile" onchange="angular.element(this).scope().onUploadFile(this.files, this)">
                     <div class="input-group">
                         <span class="input-group-btn">
                             <button class="browse btn btn-primary" type="button" ng-click="browseFile($event);"><i class="glyphicon glyphicon-search"></i> Browse</button>
@@ -663,6 +663,7 @@
                         <input type="text" class="form-control" disabled placeholder="identification file" ng-class="[requiredClass]">
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>

@@ -15,6 +15,7 @@ namespace RisingWebApp.Models
         public IEnumerable<Reference> References { get; set; }
         public IEnumerable<Relative> Relatives { get; set; }
         public Agreement Agreement { get; set; }
+        public IEnumerable<HttpPostedFileBase> RequiredDocs { get; set; }
 
         public Application()
         {
@@ -24,6 +25,7 @@ namespace RisingWebApp.Models
             BankInfo = new List<BankInfo>();
             References = new List<Reference>();
             Relatives = new List<Relative>();
+            RequiredDocs = new List<HttpPostedFileBase>();
         }
     }
 }
