@@ -409,37 +409,236 @@
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>Name of creditor:</label>
-                    <input type="text" class="form-control" ng-model="CreditInfo[1].Name" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="CreditInfo[1].Name">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Account number:</label>
-                    <input type="text" class="form-control" ng-model="CreditInfo[1].AccountNumber" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="CreditInfo[1].AccountNumber">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Monthly payment:</label>
-                    <input type="text" class="form-control" ng-model="CreditInfo[1].MonthlyPayment" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="CreditInfo[1].MonthlyPayment">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>BalanceDue:</label>
-                    <input type="text" class="form-control" ng-model="CreditInfo[1].BalanceDue" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="CreditInfo[1].BalanceDue">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>Name of creditor:</label>
-                    <input type="text" class="form-control" ng-model="CreditInfo[2].Name" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="CreditInfo[2].Name">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Account number:</label>
-                    <input type="text" class="form-control" ng-model="CreditInfo[2].AccountNumber" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="CreditInfo[2].AccountNumber">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Monthly payment:</label>
-                    <input type="text" class="form-control" ng-model="CreditInfo[2].MonthlyPayment" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="CreditInfo[2].MonthlyPayment">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>BalanceDue:</label>
-                    <input type="text" class="form-control" ng-model="CreditInfo[2].BalanceDue" ng-class="[requiredClass]">
+                    <input type="text" class="form-control" ng-model="CreditInfo[2].BalanceDue">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>Name of bank/branch:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[0].Name" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Account number:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[0].AccountNumber" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Type of account:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[0].AccountType" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Account balance:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[0].Balance" ng-class="[requiredClass]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>Name of bank/branch:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[1].Name">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Account number:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[1].AccountNumber">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Type of account:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[1].AccountType">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Account balance:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[1].Balance">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>Name of bank/branch:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[2].Name">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Account number:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[2].AccountNumber">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Type of account:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[2].AccountType">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Account balance:</label>
+                    <input type="text" class="form-control" ng-model="BankInfo[2].Balance">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default grey_background panel_default_margin" id="employmentHistoryDiv">
+    <div class="panel-body point_cursor" ng-click="referenceDivClick();">
+        <b>6. PERSONAL REFERENCES</b>
+        <span ng-hide="referenceShow" class="glyphicon glyphicon-menu-down right"></span>
+        <span ng-show="referenceShow" class="glyphicon glyphicon-menu-up right"></span>
+    </div>
+    <div ng-show="referenceShow" class="slideDown panel-default panel_margin">
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-sm-2">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" ng-model="References[0].Name" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>Address:</label>
+                    <input type="text" class="form-control" ng-model="References[0].Address" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Phone:</label>
+                    <input type="text" class="form-control" ng-model="References[0].Phone" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>Length of acquaintance:</label>
+                    <input type="text" class="form-control" ng-model="References[0].AcquaintanceLength" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Occupation:</label>
+                    <input type="text" class="form-control" ng-model="References[0].Occupation" ng-class="[requiredClass]">
+                </div>
+            </div>            
+            <div class="row">
+                <div class="form-group col-sm-2">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" ng-model="References[1].Name" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>Address:</label>
+                    <input type="text" class="form-control" ng-model="References[1].Address" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Phone:</label>
+                    <input type="text" class="form-control" ng-model="References[1].Phone" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>Length of acquaintance:</label>
+                    <input type="text" class="form-control" ng-model="References[1].AcquaintanceLength" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Occupation:</label>
+                    <input type="text" class="form-control" ng-model="References[1].Occupation" ng-class="[requiredClass]">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default grey_background panel_default_margin" id="employmentHistoryDiv">
+    <div class="panel-body point_cursor" ng-click="relativeDivClick();">
+        <b>7. NEAREST RELATIVE(S)</b>
+        <span ng-hide="relativeShow" class="glyphicon glyphicon-menu-down right"></span>
+        <span ng-show="relativeShow" class="glyphicon glyphicon-menu-up right"></span>
+    </div>
+    <div ng-show="relativeShow" class="slideDown panel-default panel_margin">
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-sm-2">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" ng-model="Relatives[0].Name" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>Address:</label>
+                    <input type="text" class="form-control" ng-model="Relatives[0].Address" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Phone:</label>
+                    <input type="text" class="form-control" ng-model="Relatives[0].Phone" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Relationship:</label>
+                    <input type="text" class="form-control" ng-model="Relatives[0].Relationship" ng-class="[requiredClass]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-2">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" ng-model="Relatives[1].Name" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>Address:</label>
+                    <input type="text" class="form-control" ng-model="Relatives[1].Address" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Phone:</label>
+                    <input type="text" class="form-control" ng-model="Relatives[1].Phone" ng-class="[requiredClass]">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Relationship:</label>
+                    <input type="text" class="form-control" ng-model="Relatives[1].Relationship" ng-class="[requiredClass]">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default grey_background panel_default_margin" id="agreementDiv">
+    <div class="panel-body point_cursor" ng-click="agreementDivClick();">
+        <b>8. AGREEMENT</b>
+        <span ng-hide="agreementShow" class="glyphicon glyphicon-menu-down right"></span>
+        <span ng-show="agreementShow" class="glyphicon glyphicon-menu-up right"></span>
+    </div>
+    <div ng-show="agreementShow" class="slideDown panel-default panel_margin" >
+        <div class="panel-body">
+            <div style="margin-bottom:5px;">
+                <b>By checking the checkbox</b>
+                <span ng-class="[requiredClass]"><input type="checkbox" ng-model="Agreement.Agree" ng-click="agreementClick($event);" /></span>
+                &nbsp;&nbsp;<span ng-model="signDate">Signing Date: {{Agreement.SignDate}}</span>
+            </div>
+            <p>
+                Applicant understands and agrees that: (i) this is an application to rent only and does not guarantee that applicant will
+                be offered the Premises; (ii) Landord or Manager or Agent may accept more than one application for the Premises and, using their
+                sole discretion, will select the best qualified applicant, and (iii) Applicant will provide a copy of applicant's driver's license upon request.
+                <br />
+                Applicant represents the above information to be true and complete, and hereby authorize Landord or Manager or Agent to (i) verify the information
+                provided; and (ii) obtain a credit report on applicant and other reports, warnings and verifications on and about applicant, which may include,
+                but not be limited to, criminal background checks, reports on unlawfun detainers, bad checks, fraud warnings, employment and tenant history.
+                Applicant further authorize Landord or Manager or Agent to disclose information to prior or subsequent owners and/or agents.
+                <br />
+                <b>If applicant is not fully completed, or received without a screening fee: (i) the application will not be processed, and (ii) the application and any screening fee will be returned.</b>
+            </p>
+            Return your completed application and any application fee not already paid to: <input type="text" ng-model="Agreement.ReturnTo" />
+            <div class="row form-inline" style="margin-top:5px;">
+                <div class="form-group col-sm-3">
+                    Address: <input type="text" ng-model="Agreement.ReturnAddress" />
+                </div>
+                <div class="form-group col-sm-3">
+                    City: <input type="text" ng-model="Agreement.ReturnCity" />
+                </div>
+                <div class="form-group col-sm-3">
+                    State: <input type="text" ng-model="Agreement.ReturnState" />
+                </div>
+                <div class="form-group col-sm-3">
+                    Zip: <input type="text" ng-model="Agreement.ReturnZip" />
                 </div>
             </div>
         </div>

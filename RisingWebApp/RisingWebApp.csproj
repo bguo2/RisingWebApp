@@ -181,8 +181,10 @@
     <Compile Include="Email\IEmailServerSettings.cs" />
     <Compile Include="Managers\IRentApplicationManager.cs" />
     <Compile Include="Managers\RentApplicationManager.cs" />
+    <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Auto.cs" />
+    <Compile Include="Models\BankInfo.cs" />
     <Compile Include="Models\CreditInfo.cs" />
     <Compile Include="Models\Dependent.cs" />
     <Compile Include="Models\DriverLicense.cs" />
@@ -191,6 +193,8 @@
     <Compile Include="Models\PersonalInfo.cs" />
     <Compile Include="Models\Pet.cs" />
     <Compile Include="Models\Premises.cs" />
+    <Compile Include="Models\Reference.cs" />
+    <Compile Include="Models\Relative.cs" />
     <Compile Include="Models\RentApplication.cs" />
     <Compile Include="Models\Residence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

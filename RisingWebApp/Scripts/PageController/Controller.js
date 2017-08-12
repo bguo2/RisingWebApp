@@ -20,7 +20,7 @@ app.directive('input', function() {
     }
 });
 
-function processAppForm($scope, formIdName, formNumber)
+function processAppForm($scope, formIdName, formNumber, $filter)
 {
     $scope.disableInput = false;
     if ($scope.$parent.curIndex > 0) {
@@ -40,20 +40,40 @@ function processAppForm($scope, formIdName, formNumber)
     $scope.CreditInfo[0] = {};
     $scope.CreditInfo[1] = {};
     $scope.CreditInfo[2] = {};
+    $scope.BankInfo = [];
+    $scope.BankInfo[0] = {};
+    $scope.BankInfo[1] = {};
+    $scope.BankInfo[2] = {};
+    $scope.References = [];
+    $scope.References[0] = {};
+    $scope.References[1] = {};
+    $scope.Relatives = [];
+    $scope.Relatives[0] = {};
+    $scope.Relatives[1] = {};
+    $scope.Agreement = {};
     $scope.Application = {
         "PersonalInfo": $scope.PersonalInfo,
         "ResidenceHistory": $scope.ResidenceHistory,
         "EmploymentHistory": $scope.EmploymentHistory,
-        "CreditInfo": $scope.CreditInfo
+        "CreditInfo": $scope.CreditInfo,
+        "BankInfo": $scope.BankInfo,
+        "References": $scope.References,
+        "Relatives": $scope.Relatives,
+        "Agreement": $scope.Agreement
     };
-    $scope.incomeTypes = ['Week', 'Bi-Weeks', '3-Weeks', 'Month', 'Year'];
+    $scope.incomeTypes = ['Week', 'Bi-Week', '3-Week', 'Month', 'Year'];
     $scope.EmploymentHistory[0].IncomeType = $scope.incomeTypes[0];
     $scope.EmploymentHistory[1].IncomeType = $scope.incomeTypes[0];
+    $scope.Agreement.Agree = false;
+    $scope.Agreement.SignDate = "";
 
     $scope.personalInfoShow = false;
     $scope.residenceShow = false;
     $scope.employmentShow = false;
     $scope.creditInfoShow = false;
+    $scope.referenceShow = false;
+    $scope.relativeShow = false;
+    $scope.agreementShow = false;
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
@@ -66,10 +86,30 @@ function processAppForm($scope, formIdName, formNumber)
     $scope.creditInfoDivClick = function () {
         $scope.creditInfoShow = !$scope.creditInfoShow;
     }
+    $scope.referenceDivClick = function () {
+        $scope.referenceShow = !$scope.referenceShow;
+    }
+    $scope.relativeDivClick = function () {
+        $scope.relativeShow = !$scope.relativeShow;
+    }
+    $scope.agreementDivClick = function () {
+        $scope.agreementShow = !$scope.agreementShow;
+    }
        
     //radio clcik
     $scope.radioClick = function (event) {
         $(event.target).closest('div').removeClass("redbox");
+    }
+
+    $scope.agreementClick = function (event) {
+        if ($scope.Agreement.Agree) {
+            $scope.Agreement.SignDate = $filter('date')(new Date(), 'MM/dd/yyyy hh:mm:ss');
+            $(event.target).closest('span').removeClass("redbox");
+        }
+        else {
+            $scope.Agreement.SignDate = "";
+            $(event.target).closest('span').addClass("redbox");
+        }
     }
 
     //the current application is enabled.
@@ -80,8 +120,8 @@ function processAppForm($scope, formIdName, formNumber)
     });
 }
 
-app.controller('ApplicationForm0', function ($scope, $timeout) {
-    processAppForm($scope, '#form0', 0);
+app.controller('ApplicationForm0', function ($scope, $timeout, $filter) {
+    processAppForm($scope, '#form0', 0, $filter);
     //listen to the parent event
     $scope.$on('premisesDoneEvent', function (event, args) {
         if ($scope.$parent.curIndex === 0) {
@@ -91,16 +131,16 @@ app.controller('ApplicationForm0', function ($scope, $timeout) {
     });
 });
 
-app.controller('ApplicationForm1', function ($scope) {
-    processAppForm($scope, '#form1', 1);
+app.controller('ApplicationForm1', function ($scope, $filter) {
+    processAppForm($scope, '#form1', 1, $filter);
 });
 
-app.controller('ApplicationForm2', function ($scope) {
-    processAppForm($scope, '#form2', 2);
+app.controller('ApplicationForm2', function ($scope, $filter) {
+    processAppForm($scope, '#form2', 2, $filter);
 });
 
-app.controller('ApplicationForm3', function ($scope) {
-    processAppForm($scope, '#form3', 3);
+app.controller('ApplicationForm3', function ($scope, $filter) {
+    processAppForm($scope, '#form3', 3, $filter);
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {

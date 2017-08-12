@@ -11,12 +11,19 @@ namespace RisingWebApp.Models
         public IEnumerable<Residence> ResidenceHistory { get; set; }
         public IEnumerable<Employment> EmploymentHistory { get; set; }
         public IEnumerable<CreditInfo> CreditInfo { get; set; }
+        public IEnumerable<BankInfo> BankInfo { get; set; }
+        public IEnumerable<Reference> References { get; set; }
+        public IEnumerable<Relative> Relatives { get; set; }
+        public Agreement Agreement { get; set; }
 
         public Application()
         {
             ResidenceHistory = new List<Residence>();
             EmploymentHistory = new List<Employment>();
             CreditInfo = new List<CreditInfo>();
+            BankInfo = new List<BankInfo>();
+            References = new List<Reference>();
+            Relatives = new List<Relative>();
         }
     }
 }

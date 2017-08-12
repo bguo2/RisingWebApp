@@ -34,6 +34,13 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
             $scope.ResidenceHistory = $scope.$parent.Applications[formNumber].ResidenceHistory;
             $scope.EmploymentHistory = $scope.$parent.Applications[formNumber].EmploymentHistory;
             $scope.CreditInfo = $scope.$parent.Applications[formNumber].CreditInfo;
+            $scope.BankInfo = $scope.$parent.Applications[formNumber].BankInfo;
+            $scope.References = $scope.$parent.Applications[formNumber].References;
+            $scope.Relatives = $scope.$parent.Applications[formNumber].Relatives;
+            $scope.Agreement = $scope.$parent.Applications[formNumber].Agreement;
+            if ($scope.$parent.Applications[formNumber].Agreement.Agree === 'true') {
+                $scope.Agreement.Agree = true;
+            }
             /*$timeout(function () {
                 changeBlockClass(formIdName, '#personalInfoDiv', 'yellow_background', 'green_background');
                 changeBlockClass(formIdName, '#residenceHistoryDiv', 'yellow_background', 'green_background');
@@ -45,7 +52,9 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
     $scope.residenceShow = false;
     $scope.employmentShow = false;
     $scope.creditInfoShow = false;
-    $scope.incomeTypes = ['Week', 'Bi-Weeks', '3-Weeks', 'Month', 'Year'];
+    $scope.referenceShow = false;
+    $scope.agreementShow = false;
+    $scope.incomeTypes = ['Week', 'Bi-Week', '3-Week', 'Month', 'Year'];
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
@@ -57,6 +66,15 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
     }
     $scope.creditInfoDivClick = function () {
         $scope.creditInfoShow = !$scope.creditInfoShow;
+    }
+    $scope.referenceDivClick = function () {
+        $scope.referenceShow = !$scope.referenceShow;
+    }
+    $scope.relativeDivClick = function () {
+        $scope.relativeShow = !$scope.relativeShow;
+    }
+    $scope.agreementDivClick = function () {
+        $scope.agreementShow = !$scope.agreementShow;
     }
 
     //radio clcik
