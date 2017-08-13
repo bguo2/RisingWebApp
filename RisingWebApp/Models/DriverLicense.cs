@@ -9,6 +9,6 @@ namespace RisingWebApp.Models
     {
         public string Number { get; set; }
         public string State { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public DateTime? ExpiryDate { get; set; }
     }
 }

@@ -51,6 +51,10 @@ function processAppForm($scope, formIdName, formNumber, $filter)
     $scope.Relatives[0] = {};
     $scope.Relatives[1] = {};
     $scope.Agreement = {};
+    //this won't be passed to backend. internal use only in Javascripts
+    $scope.Attachments = {};
+    $scope.Documents = [];
+    $scope.Documents[0] = {};
     $scope.Application = {
         "PersonalInfo": $scope.PersonalInfo,
         "ResidenceHistory": $scope.ResidenceHistory,
@@ -59,7 +63,8 @@ function processAppForm($scope, formIdName, formNumber, $filter)
         "BankInfo": $scope.BankInfo,
         "References": $scope.References,
         "Relatives": $scope.Relatives,
-        "Agreement": $scope.Agreement
+        "Agreement": $scope.Agreement,
+        "Documents": $scope.Documents
     };
     $scope.incomeTypes = ['Week', 'Bi-Week', '3-Week', 'Month', 'Year'];
     $scope.EmploymentHistory[0].IncomeType = $scope.incomeTypes[0];
@@ -127,8 +132,15 @@ function processAppForm($scope, formIdName, formNumber, $filter)
         target.val($(element).val().replace(/C:\\fakepath\\/i, ''));
         if (target.val().length > 0) {
             target.removeClass("redbox");
-            var fd = new FormData();
-            fd.append(element.name, files[0]);
+            switch(element.name)
+            {
+                case "IdentityFile":
+                    $scope.Attachments.IdentityFile = files[0];
+                    $scope.Documents[0].Name = files[0].name;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -136,6 +148,7 @@ function processAppForm($scope, formIdName, formNumber, $filter)
     $scope.$watch('$parent.applicationsNumber', function () {
         if (formNumber == $scope.$parent.applicationsNumber - 1) {
             $scope.$parent.Applications.push($scope.Application);
+            $scope.$parent.Attachments.push($scope.Attachments);
         }
     });
 }
@@ -175,6 +188,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
         "Premises": $scope.Premises,
         "Applications": $scope.Applications
     };
+    $scope.Attachments = [];
     $scope.curIndex = 0;
     $scope.applicationsNumber = 1;
     $scope.total = 4;
@@ -239,20 +253,25 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     //submit
     $scope.submitForm = function () {      
         debugger;
-        $http({
-            url: '/api/Application',
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            data: JSON.stringify($scope.RentApplication)
-        }).then(
-            //successful
-            function successCallback(response) {
+        var formData = new FormData();
+        formData.append("application", JSON.stringify($scope.RentApplication));
+        for (i = 0; i < $scope.Attachments.length; i++) {
+            formData.append("IdentityFile" + i, $scope.Attachments[i].IdentityFile);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api/Application",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (response) {
                 alert("success: " + response.statusText);
             },
-            //error
-            function errorCallback(response) {
+            error: function (response) {
                 alert("error: " + response.statusText);
-            });
+            }
+        });
     }
 });
 

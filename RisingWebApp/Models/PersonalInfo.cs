@@ -20,7 +20,7 @@ namespace RisingWebApp.Models
         public ApplicationType Apptype { get; set; }
 
         public string FullName { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public string Ssn { get; set; }
         public DriverLicense DriverLicense { get; set; }
         public string HomePhone { get; set; }

@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Web;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Threading.Tasks;
 using RisingWebApp.Models;
+using System.Configuration;
+using Newtonsoft.Json;
+
 using RisingWebApp.Managers;
 
 namespace RisingWebApp.Controllers
@@ -20,13 +23,30 @@ namespace RisingWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> PostApplication([FromBody]RentApplication application)
+        public async Task<HttpResponseMessage> PostApplication()
         {
             try
             {
+                if (!Request.Content.IsMimeMultipartContent())
+                {
+                    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+                }
 
-                var result = await _rentAppManager.SendApplication(application);
-                if(string.IsNullOrEmpty(result))
+                var appDataFolder = RentApplicationManager.GetAppDataFolder();
+                var tempFolder = string.Format("{0}\\temp", appDataFolder);
+                if(!Directory.Exists(tempFolder))
+                    Directory.CreateDirectory(tempFolder);
+                var provider = new MultipartFormDataStreamProvider(tempFolder);
+                var result = await Request.Content.ReadAsMultipartAsync(provider);
+                if (result.FormData["application"] == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                }
+
+                var jsonStr = HttpUtility.HtmlDecode(result.FormData["application"]);
+                var application = JsonConvert.DeserializeObject<RentApplication>(jsonStr);
+                var sendResult = await _rentAppManager.SendApplication(application, result.FileData);
+                if(string.IsNullOrEmpty(sendResult))
                     return Request.CreateResponse(HttpStatusCode.Accepted);
                 return Request.CreateResponse(HttpStatusCode.BadRequest, result);
             }

@@ -187,6 +187,7 @@
     <Compile Include="Models\BankInfo.cs" />
     <Compile Include="Models\CreditInfo.cs" />
     <Compile Include="Models\Dependent.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\DriverLicense.cs" />
     <Compile Include="Models\EmergencyContact.cs" />
     <Compile Include="Models\Employment.cs" />
