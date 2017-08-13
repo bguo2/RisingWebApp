@@ -195,9 +195,15 @@ app.controller('ApplicationForm3', function ($scope, $filter) {
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
+    var availableHousesStr = $('#AvailableHouses').val();
+    var rentalsStr = $('#Rentals').val();
+    $scope.Houses = availableHousesStr.split(";");
+    $scope.Rentals = rentalsStr.split(";");
+
+    //initialization
     $scope.showErrorMsg = false;
     $scope.disableForms = true;
-    $scope.disableSubmit = false;
+    $scope.disableSubmit = true;
     $scope.disableBackToPrevious = true;
     $scope.disableNextApplication = true;
     $scope.disableAddAnother = true;
@@ -220,6 +226,12 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     $scope.requiredClass = "redbox";
     
     //basci section
+    $scope.PremisesAddressChanged = function () {
+        var index = $scope.Houses.indexOf($scope.Premises.Address);
+        $scope.Premises.Rent = $scope.Rentals[index];
+        $('#premisesAddress').removeClass("redbox");
+        $('#premisesRent').removeClass("redbox");
+    }
     $scope.$watch("Premises", function (newValue, oldValue) {
         if (Object.keys(newValue).length < 3) {
             return;
@@ -333,7 +345,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
                 $("body").css("cursor", "default");
                 $scope.$apply(function () {
                     $scope.dialogHeader = "Success";
-                    $scope.dialogMessage = 'Thank you for your interest in ' + $scope.Premises.Address + '. Your application has been sent to Rising Investments LLC already. Once you have paid the screening/credit check fees, Our staff will contact you soon.';
+                    $scope.dialogMessage = 'Thank you for applying for ' + $scope.Premises.Address + '. Your application has been sent to Rising Investments LLC successfully. Once you have paid the screening/credit check fees, our staff will contact you soon.';
                 });
                 $('#infoDlg').modal('show');
             },
@@ -343,7 +355,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
                 //javascript call angular
                 $scope.$apply(function () {
                     $scope.dialogHeader = "Failure";
-                    $scope.dialogMessage = 'Unfortunatel, your application has been failed to send to Rising Investments LLC. PLease check the errors and try it again';
+                    $scope.dialogMessage = 'Unfortunately, your application has been failed to send to Rising Investments LLC. PLease check the errors and try it again.';
                     $scope.enableButtonsForSubmitFail();
                 });
                 $('#infoDlg').modal('show');

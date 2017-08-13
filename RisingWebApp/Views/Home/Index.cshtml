@@ -4,6 +4,8 @@
 }
 
 <div ng-controller="HomeController">
+    <input type="hidden" id="AvailableHouses" value="@ViewBag.AvailableHouses" />
+    <input type="hidden" id="Rentals" value="@ViewBag.Rentals" />
     <div ng-view></div>
 </div>
 

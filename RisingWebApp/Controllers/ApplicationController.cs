@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Threading.Tasks;
 using RisingWebApp.Models;
-using System.Configuration;
 using Newtonsoft.Json;
 
 using RisingWebApp.Managers;

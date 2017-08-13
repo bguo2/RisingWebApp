@@ -64,7 +64,7 @@ namespace RisingWebApp.Managers
 
             var htmlBody = new StringBuilder();
             email.From = ConfigurationManager.AppSettings.Get("SMTP.UserName");
-            email.To = mainApp.PersonalInfo.Email;
+            email.To = ConfigurationManager.AppSettings.Get("RisingEmail");
             email.IsBodyHtml = true;
             email.Subject = "Rent Application For " + application.Premises.Address;
             //body
