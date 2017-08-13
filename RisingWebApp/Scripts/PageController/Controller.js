@@ -195,6 +195,7 @@ app.controller('ApplicationForm3', function ($scope, $filter) {
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
+    //avaliable houses
     var availableHousesStr = $('#AvailableHouses').val();
     var rentalsStr = $('#Rentals').val();
     $scope.Houses = availableHousesStr.split(";");
