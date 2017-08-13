@@ -164,6 +164,9 @@ function processAppForm($scope, formIdName, formNumber, $filter)
         if (formNumber == $scope.$parent.applicationsNumber - 1) {
             $scope.$parent.Applications.push($scope.Application);
             $scope.$parent.Attachments.push($scope.Attachments);
+            if ($scope.$parent.curIndex > 0) {
+                $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
+            }
         }
     });
 }
@@ -192,6 +195,7 @@ app.controller('ApplicationForm3', function ($scope, $filter) {
 });
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
+    $scope.showErrorMsg = false;
     $scope.disableForms = true;
     $scope.disableSubmit = false;
     $scope.disableBackToPrevious = true;
@@ -251,11 +255,22 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     //back to previous
     $scope.backToPrevious = function () {
         previousButtonAction($scope);
+        $scope.appDescription();
     }
 
     //next application
     $scope.nextApplication = function () {
         nextButtonAction($scope);
+        $scope.appDescription();
+    }
+
+    $scope.appDescription = function () {
+        if ($scope.curIndex == 0) {
+            $scope.applicationDescription = "Main Application ";
+        }
+        else {
+            $scope.applicationDescription = "Application " + ($scope.curIndex + 1);
+        }
     }
 
     $scope.enableButtons = function () {
@@ -265,9 +280,32 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
         //}
     }
 
+    $scope.disableAllButtons = function () {
+        $("body").css("cursor", "progress");
+        $scope.disableSubmit = true;
+        $scope.disableBackToPrevious = true;
+        $scope.disableNextApplication = true;
+        $scope.disableAddAnother = true;
+    }
+
+    //submite fails
+    $scope.enableButtonsForSubmitFail = function () {
+        $scope.disableSubmit = false;
+        if($scope.curIndex > 0) {
+            $scope.disableBackToPrevious = false;
+        }
+        if($scope.curIndex < $scope.applicationsNumber - 1) {
+            $scope.disableNextApplication = false;
+        }
+        if ($scope.applicationsNumber < $scope.total) {
+            $scope.disableAddAnother = false;
+        }
+        $scope.showErrorMsg = true;
+    }
+
     //submit
-    $scope.submitForm = function () {      
-        debugger;
+    $scope.submitForm = function () {
+        $scope.disableAllButtons();
         var formData = new FormData();
         formData.append("application", JSON.stringify($scope.RentApplication));
         for (i = 0; i < $scope.Attachments.length; i++) {
@@ -292,10 +330,17 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
             processData: false,
             data: formData,
             success: function (data, statusText, xhr) {
-                alert("success: " + xhr.status);
+                $("body").css("cursor", "default");
+                $('#successDlg').modal('show');
             },
-            error: function (data, statusText, xhr) {
-                alert("error: " + xhr.status);
+            error: function (xhr, textStatus, errorThrown) {
+                $("body").css("cursor", "default");
+                $('#errorMsg').html(xhr.responseText);
+                //javascript call angular
+                $scope.$apply(function () {
+                    $scope.enableButtonsForSubmitFail();
+                });
+                alert("error: " + errorThrown);
             }
         });
     }

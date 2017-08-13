@@ -58,9 +58,10 @@ namespace RisingWebApp.Managers
             SaveApplication(application);
             var mainApp = application.Applications.ElementAt(0);
             var appid = new string(mainApp.PersonalInfo.Ssn.Where(c => char.IsLetterOrDigit(c)).ToArray());
-            SaveAttachment(appid, attachedFiles);
 
             var email = new Email.Email();
+            email.AttachmentFiles = SaveAttachments(appid, attachedFiles);
+
             var htmlBody = new StringBuilder();
             email.From = ConfigurationManager.AppSettings.Get("SMTP.UserName");
             email.To = mainApp.PersonalInfo.Email;
@@ -71,8 +72,6 @@ namespace RisingWebApp.Managers
             htmlBody.AppendFormat("To view this application, please click the following link:<br>{0}/Home/ViewApplication?appId={1}", baseUrl, appid);
 
             email.Body = htmlBody.ToString();
-
-
             await _emailServer.Send(email);
             return "";
         }
@@ -87,8 +86,9 @@ namespace RisingWebApp.Managers
         }
 
         //save attachments
-        private void SaveAttachment(string appId, IEnumerable<MultipartFileData> attachedFiles)
+        private IEnumerable<string> SaveAttachments(string appId, IEnumerable<MultipartFileData> attachedFiles)
         {
+            var attachments = new List<string>();
             var path = string.Format("{0}\\{1}", GetAppDataFolder(), appId);
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
@@ -105,7 +105,10 @@ namespace RisingWebApp.Managers
                 if (File.Exists(filePath))
                     File.Delete(filePath);
                 File.Move(file.LocalFileName, filePath);
+                attachments.Add(filePath);
             }
+
+            return attachments;
         }
 
         private string StripQuotes(string target)

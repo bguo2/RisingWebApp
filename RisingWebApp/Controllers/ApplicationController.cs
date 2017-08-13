@@ -48,7 +48,7 @@ namespace RisingWebApp.Controllers
                 var sendResult = await _rentAppManager.SendApplication(application, result.FileData);
                 if(string.IsNullOrEmpty(sendResult))
                     return Request.CreateResponse(HttpStatusCode.Accepted);
-                return Request.CreateResponse(HttpStatusCode.BadRequest, result);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, sendResult);
             }
             catch (Exception e)
             {

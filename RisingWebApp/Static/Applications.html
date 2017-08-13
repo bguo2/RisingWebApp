@@ -10,7 +10,7 @@
         </b></p>
 </div>
 
-<form novalidate id="form" enctype="multipart/form-data" ng-submit="submitForm()">
+<form novalidate id="applicationForm" ng-submit="submitForm()">
     <div class="panel panel-default grey_background" id="premises">
         <div class="panel-body">
             <div class="form-group" style="margin-bottom:-1px">
@@ -42,12 +42,35 @@
         <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm2" ng-show="formShow[2]" id="form2"></div>
         <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm3" ng-show="formShow[3]" id="form3"></div>
     </div>
-    <div class="panel">
+
+    <div id="errorMsg" ng-show="showErrorMsg" class="panel" style="color:red">
+
+    </div>
+
+    <div class="panel" id="panelButtons">
         <div class="panel-body" align="center">
             <button type="submit" class="btn btn-primary" ng-disabled="disableSubmit">Submit</button>
             <button type="button" class="btn btn-primary" ng-click="backToPrevious();" ng-disabled="disableBackToPrevious"><< Previous</button>
             <button type="button" class="btn btn-primary" ng-click="nextApplication();" ng-disabled="disableNextApplication">Next >></button>
             <button type="button" class="btn btn-primary" ng-click="addAnotherApplication();" ng-disabled="disableAddAnother">Add Another Application</button>
+        </div>
+    </div>
+
+    <!--modal dialog-->
+    <div id="successDlg" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for your interest in {{Premises.Address}}. Your application has been sent to Rising Investments LLC already. Once you have paid the screening/credit check fees, Lisa will contact you soon.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 </form>
