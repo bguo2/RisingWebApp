@@ -56,16 +56,16 @@
         </div>
     </div>
 
-    <!--modal dialog-->
-    <div id="successDlg" class="modal fade" role="dialog">
+    <!--success modal dialog-->
+    <div id="infoDlg" class="modal fade" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Success</h4>
+                    <h4 class="modal-title">{{dialogHeader}}</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Thank you for your interest in {{Premises.Address}}. Your application has been sent to Rising Investments LLC already. Once you have paid the screening/credit check fees, Lisa will contact you soon.</p>
+                    <p>{{dialogMessage}}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

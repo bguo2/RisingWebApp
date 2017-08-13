@@ -331,16 +331,22 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
             data: formData,
             success: function (data, statusText, xhr) {
                 $("body").css("cursor", "default");
-                $('#successDlg').modal('show');
+                $scope.$apply(function () {
+                    $scope.dialogHeader = "Success";
+                    $scope.dialogMessage = 'Thank you for your interest in ' + $scope.Premises.Address + '. Your application has been sent to Rising Investments LLC already. Once you have paid the screening/credit check fees, Our staff will contact you soon.';
+                });
+                $('#infoDlg').modal('show');
             },
             error: function (xhr, textStatus, errorThrown) {
                 $("body").css("cursor", "default");
                 $('#errorMsg').html(xhr.responseText);
                 //javascript call angular
                 $scope.$apply(function () {
+                    $scope.dialogHeader = "Failure";
+                    $scope.dialogMessage = 'Unfortunatel, your application has been failed to send to Rising Investments LLC. PLease check the errors and try it again';
                     $scope.enableButtonsForSubmitFail();
                 });
-                alert("error: " + errorThrown);
+                $('#infoDlg').modal('show');
             }
         });
     }
