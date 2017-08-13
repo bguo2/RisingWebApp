@@ -94,18 +94,32 @@ namespace RisingWebApp.Managers
                 Directory.CreateDirectory(path);
             foreach(var file in attachedFiles)
             {
+                var name = StripQuotes(file.Headers.ContentDisposition.Name);
+                var index = name.Substring(name.Length - 1);
+                var subPath = string.Format("{0}\\{1}", path, index);
+                if (!Directory.Exists(subPath))
+                    Directory.CreateDirectory(subPath);
                 string fileName = file.Headers.ContentDisposition.FileName;
-                if (fileName.StartsWith("\"") && fileName.EndsWith("\""))
-                {
-                    fileName = fileName.Trim('"');
-                }
-                if (fileName.Contains(@"/") || fileName.Contains(@"\"))
-                {
-                    fileName = Path.GetFileName(fileName);
-                }
-                var filePath = string.Format("{0}\\{1}", path, fileName);
+                fileName = StripQuotes(fileName);
+                var filePath = string.Format("{0}\\{1}", subPath, fileName);
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
                 File.Move(file.LocalFileName, filePath);
             }
+        }
+
+        private string StripQuotes(string target)
+        {
+            if (target.StartsWith("\"") && target.EndsWith("\""))
+            {
+                target = target.Trim('"');
+            }
+            if (target.Contains(@"/") || target.Contains(@"\"))
+            {
+                target = Path.GetFileName(target);
+            }
+
+            return target;
         }
 
         private string GetAppDataFile(string appid)

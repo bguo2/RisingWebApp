@@ -55,6 +55,9 @@ function processAppForm($scope, formIdName, formNumber, $filter)
     $scope.Attachments = {};
     $scope.Documents = [];
     $scope.Documents[0] = {};
+    $scope.Documents[1] = {};
+    $scope.Documents[2] = {};
+    $scope.Documents[3] = {};
     $scope.Application = {
         "PersonalInfo": $scope.PersonalInfo,
         "ResidenceHistory": $scope.ResidenceHistory,
@@ -137,6 +140,18 @@ function processAppForm($scope, formIdName, formNumber, $filter)
                 case "IdentityFile":
                     $scope.Attachments.IdentityFile = files[0];
                     $scope.Documents[0].Name = files[0].name;
+                    break;
+                case "SsnFile":
+                    $scope.Attachments.SsnFile = files[0];
+                    $scope.Documents[1].Name = files[0].name;
+                    break;
+                case "PaystubsFile":
+                    $scope.Attachments.PaystubsFile = files[0];
+                    $scope.Documents[2].Name = files[0].name;
+                    break;
+                case "BillFile":
+                    $scope.Attachments.BillFile = files[0];
+                    $scope.Documents[3].Name = files[0].name;
                     break;
                 default:
                     break;
@@ -256,7 +271,18 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
         var formData = new FormData();
         formData.append("application", JSON.stringify($scope.RentApplication));
         for (i = 0; i < $scope.Attachments.length; i++) {
-            formData.append("IdentityFile" + i, $scope.Attachments[i].IdentityFile);
+            if ($scope.Attachments[i].IdentityFile != null && $scope.Attachments[i].IdentityFile.name.length > 0) {
+                formData.append("IdentityFile" + i, $scope.Attachments[i].IdentityFile);
+            }
+            if ($scope.Attachments[i].SsnFile != null && $scope.Attachments[i].SsnFile.name.length > 0) {
+                formData.append("SsnFile" + i, $scope.Attachments[i].SsnFile);
+            }
+            if ($scope.Attachments[i].PaystubsFile != null && $scope.Attachments[i].PaystubsFile.name.length > 0) {
+                formData.append("PaystubsFile" + i, $scope.Attachments[i].PaystubsFile);
+            }
+            if ($scope.Attachments[i].BillFile != null && $scope.Attachments[i].BillFile.name.length > 0) {
+                formData.append("BillFile" + i, $scope.Attachments[i].BillFile);
+            }
         }
 
         $.ajax({
@@ -265,11 +291,11 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
             contentType: false,
             processData: false,
             data: formData,
-            success: function (response) {
-                alert("success: " + response.statusText);
+            success: function (data, statusText, xhr) {
+                alert("success: " + xhr.status);
             },
-            error: function (response) {
-                alert("error: " + response.statusText);
+            error: function (data, statusText, xhr) {
+                alert("error: " + xhr.status);
             }
         });
     }

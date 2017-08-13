@@ -9,7 +9,7 @@ namespace RisingWebApp.Models
     {
         public string Name { get; set; }
         public string AccountNumber { get; set; }
-        public decimal AccountType { get; set; }
+        public string AccountType { get; set; }
         public decimal Balance { get; set; }
     }
 }

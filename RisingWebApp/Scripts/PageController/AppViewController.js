@@ -38,6 +38,7 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
             $scope.References = $scope.$parent.Applications[formNumber].References;
             $scope.Relatives = $scope.$parent.Applications[formNumber].Relatives;
             $scope.Agreement = $scope.$parent.Applications[formNumber].Agreement;
+            $scope.Documents = $scope.$parent.Applications[formNumber].Documents;
             if ($scope.$parent.Applications[formNumber].Agreement.Agree === 'true') {
                 $scope.Agreement.Agree = true;
             }
