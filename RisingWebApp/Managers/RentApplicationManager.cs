@@ -69,7 +69,9 @@ namespace RisingWebApp.Managers
             email.Subject = "Rent Application For " + application.Premises.Address;
             //body
             var baseUrl = ConfigurationManager.AppSettings.Get("BaseUrl");
-            htmlBody.AppendFormat("To view this application, please click the following link:<br>{0}/Home/ViewApplication?appId={1}", baseUrl, appid);
+            //encode to base64
+            var bytes = Encoding.UTF8.GetBytes(appid);
+            htmlBody.AppendFormat("To view this application, please click the following link:<br>{0}/Home/ViewApplication?appId={1}", baseUrl,                          Convert.ToBase64String(bytes));
 
             email.Body = htmlBody.ToString();
             await _emailServer.Send(email);

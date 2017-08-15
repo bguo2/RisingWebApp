@@ -42,8 +42,9 @@ namespace RisingWebApp.Controllers
             ViewBag.ApplicationError = string.Empty;
             try
             {
+                var base64EncodedBytes = System.Convert.FromBase64String(appId);
                 var rentAppManager = new RentApplicationManager(null);
-                var jsonStr = rentAppManager.GetApplicationData(appId).Result;
+                var jsonStr = rentAppManager.GetApplicationData(Encoding.UTF8.GetString(base64EncodedBytes)).Result;
                 ViewBag.ApplicationData = jsonStr;
             }
             catch (Exception e)

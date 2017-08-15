@@ -199,6 +199,7 @@
     <Compile Include="Models\RentApplication.cs" />
     <Compile Include="Models\Residence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
