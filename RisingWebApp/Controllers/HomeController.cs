@@ -34,6 +34,7 @@ namespace RisingWebApp.Controllers
             }
             ViewBag.AvailableHouses = houseStr.ToString();
             ViewBag.Rentals = rentalStr.ToString();
+            ViewBag.SuccessRedirectUrl = ConfigurationManager.AppSettings.Get("SuccessRedirectUrl");
             return View();
         }
 
