@@ -361,7 +361,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
                 //javascript call angular
                 $scope.$apply(function () {
                     $scope.dialogHeader = "Failure";
-                    $scope.dialogMessage = 'Unfortunately, your application has been failed to send to Rising Investments LLC. PLease check the errors and try it again.';
+                    $scope.dialogMessage = 'Unfortunately, your application has been failed to send to Rising Investments LLC. Please check the errors and try it again.';
                     $scope.enableButtonsForSubmitFail();
                 });
                 $('#infoDlg').modal('show');

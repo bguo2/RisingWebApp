@@ -63,8 +63,8 @@ namespace RisingWebApp.Managers
             email.AttachmentFiles = SaveAttachments(appid, attachedFiles);
 
             var htmlBody = new StringBuilder();
-            email.From = ConfigurationManager.AppSettings.Get("SMTP.UserName");
-            email.To = ConfigurationManager.AppSettings.Get("RisingEmail");
+            email.From = ConfigurationManager.AppSettings.Get("FromEmail");
+            email.To = ConfigurationManager.AppSettings.Get("ToEmail");
             email.IsBodyHtml = true;
             email.Subject = "Rent Application For " + application.Premises.Address;
             //body
