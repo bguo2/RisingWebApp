@@ -318,7 +318,29 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //submit
     $scope.submitForm = function () {
-        $('#confirmDlg').modal('show');
+        var errorMsg = $scope.uiValidation();
+        if (errorMsg.length > 0) {
+            $scope.dialogHeader = "Error";
+            $scope.dialogMessage = errorMsg;
+            $('#infoDlg').modal('show');
+        }
+        else {
+            $('#confirmDlg').modal('show');
+        }
+    }
+
+    $scope.uiValidation = function () {
+        var applicationName = "Main Application.";
+        for (i = 0; i < $scope.Applications.length; i++) {
+            if (i > 0) {
+                applicationName = "Application " + (i + 1);
+            }
+            if (!$scope.Applications[i].Agreement.Agree) {
+                return "You need to check the checkbox in the agreement section (#8) on " + applicationName;
+            }
+        }
+
+        return "";
     }
 
     $scope.submitToServer = function () {

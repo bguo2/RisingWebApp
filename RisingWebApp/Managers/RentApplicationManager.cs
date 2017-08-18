@@ -71,8 +71,10 @@ namespace RisingWebApp.Managers
             //body
             var baseUrl = ConfigurationManager.AppSettings.Get("BaseUrl");
             //encode to base64
-            htmlBody.AppendFormat("");
-            htmlBody.AppendFormat("To view this application, please click the following link:<br>{0}/Home/ViewApplication?appId={1}", baseUrl, Utility.GetBase64String(appid));
+            htmlBody.AppendFormat("Dear Lisa,<br><br>{0} has submitted the application for {1}.<br>", 
+                mainApp.PersonalInfo.FullName, application.Premises.Address);
+            htmlBody.AppendFormat("To view the full application, please click the following link:<br>{0}/Home/ViewApplication?appId={1}", 
+                baseUrl, Utility.GetBase64String(appid));
 
             email.Body = htmlBody.ToString();
             await _emailServer.Send(email);
