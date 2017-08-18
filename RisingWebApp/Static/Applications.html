@@ -16,11 +16,11 @@
             <div class="form-group" style="margin-bottom:-1px">
                 <label>1. PREMISES INFORMATION</label>
             </div>
-            <div class="row form-inline">
+            <div class="row">
                 <div class="form-group col-sm-4">
-                    <label>Address:</label>
+                    <div><b>Address:</b></div>
                     <!--input type="text" class="form-control" ng-model="Premises.Address" ng-class="[requiredClass]" -->
-                    <select style="height:32px;margin-top:2px;" ng-model="Premises.Address" ng-options="x for x in Houses" 
+                    <select style="height:32px;width:100%;margin-top:5px;" ng-model="Premises.Address" ng-options="x for x in Houses" 
                             ng-change="PremisesAddressChanged()" ng-class="[requiredClass]" id="premisesAddress">
                     </select>
                 </div>
