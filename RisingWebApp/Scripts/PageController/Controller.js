@@ -318,11 +318,10 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //submit
     $scope.submitForm = function () {
-        var r = confirm("Please make sure you have completed all required information(red boxes), are you sure you want to submit your application now?");
-        if (!r) {
-            return;
-        }
+        $('#confirmDlg').modal('show');
+    }
 
+    $scope.submitToServer = function () {
         $scope.disableAllButtons();
         var formData = new FormData();
         formData.append("application", JSON.stringify($scope.RentApplication));
@@ -375,4 +374,11 @@ function infoDlgClose() {
         var redirectUrl = $('#SuccessRedirectUrl').val();
         window.location.href = redirectUrl;
     }
+}
+
+function confirmYesClicked() {
+    var scope = angular.element($("#confirmDlg")).scope();
+    scope.$apply(function () {
+        scope.submitToServer();
+    })
 }
