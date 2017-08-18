@@ -371,6 +371,8 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 });
 
 function infoDlgClose() {
-    var redirectUrl = $('#SuccessRedirectUrl').val();
-    window.location.href = redirectUrl;
+    if ($('#infoDlgHeader').html() === 'Success') {
+        var redirectUrl = $('#SuccessRedirectUrl').val();
+        window.location.href = redirectUrl;
+    }
 }

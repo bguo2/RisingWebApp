@@ -7,6 +7,18 @@ namespace RisingWebApp.Shared
 {
     public static class Utility
     {
+        public static string GetBase64String(string input)
+        {
+            var bytes = Encoding.UTF8.GetBytes(input);
+            return Convert.ToBase64String(bytes);
+        }
+
+        public static string GetOriginalStringFromBase64(string input)
+        {
+            var base64EncodedBytes = Convert.FromBase64String(input);
+            return Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
         public static string GetMd5Hash(string input)
         {
             using (MD5 md5Hash = MD5.Create())

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Text;
 using System.Configuration;
-using RisingWebApp.Models;
+using RisingWebApp.Shared;
 using RisingWebApp.Managers;
 
 namespace RisingWebApp.Controllers
@@ -43,9 +43,8 @@ namespace RisingWebApp.Controllers
             ViewBag.ApplicationError = string.Empty;
             try
             {
-                var base64EncodedBytes = System.Convert.FromBase64String(appId);
                 var rentAppManager = new RentApplicationManager(null);
-                var jsonStr = rentAppManager.GetApplicationData(Encoding.UTF8.GetString(base64EncodedBytes)).Result;
+                var jsonStr = rentAppManager.GetApplicationData(Utility.GetOriginalStringFromBase64(appId)).Result;
                 ViewBag.ApplicationData = jsonStr;
             }
             catch (Exception e)

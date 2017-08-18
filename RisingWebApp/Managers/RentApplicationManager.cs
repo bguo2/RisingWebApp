@@ -10,6 +10,7 @@ using System.Configuration;
 using Newtonsoft.Json;
 using RisingWebApp.Email;
 using RisingWebApp.Models;
+using RisingWebApp.Shared;
 
 namespace RisingWebApp.Managers
 {
@@ -70,11 +71,14 @@ namespace RisingWebApp.Managers
             //body
             var baseUrl = ConfigurationManager.AppSettings.Get("BaseUrl");
             //encode to base64
-            var bytes = Encoding.UTF8.GetBytes(appid);
-            htmlBody.AppendFormat("To view this application, please click the following link:<br>{0}/Home/ViewApplication?appId={1}", baseUrl,                          Convert.ToBase64String(bytes));
+            htmlBody.AppendFormat("");
+            htmlBody.AppendFormat("To view this application, please click the following link:<br>{0}/Home/ViewApplication?appId={1}", baseUrl, Utility.GetBase64String(appid));
 
             email.Body = htmlBody.ToString();
             await _emailServer.Send(email);
+
+            //delete attachments
+            DeleteAttchedFiles(appid, application);
             return "";
         }
 
@@ -111,6 +115,26 @@ namespace RisingWebApp.Managers
             }
 
             return attachments;
+        }
+
+        private void DeleteAttchedFiles(string appId, RentApplication application)
+        {
+            var path = string.Format("{0}\\{1}", GetAppDataFolder(), appId);
+            if (!Directory.Exists(path))
+                return;
+            for(var i = 0; i < application.Applications.Count(); i++)
+            {
+                var dir = string.Format("{0}\\{1}", path, i);
+                if(Directory.Exists(dir))
+                {
+                    var di = new DirectoryInfo(dir);
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                    Directory.Delete(dir);
+                }
+            }
         }
 
         private string StripQuotes(string target)
