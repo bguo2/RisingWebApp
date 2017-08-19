@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Text;
 using System.Configuration;
@@ -15,7 +12,8 @@ namespace RisingWebApp.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            var houses = ConfigurationManager.AppSettings.Get("AvailableHouses");
+            var curPath = System.Web.HttpContext.Current.Server.MapPath("~");
+            var houses = System.IO.File.ReadAllText(string.Format("{0}\\AvailableHouses.txt", curPath)); 
             var arrays = houses.Split(';');
             var houseStr = new StringBuilder();
             var rentalStr = new StringBuilder();

@@ -132,6 +132,27 @@ function processAppForm($scope, formIdName, formNumber, $filter)
  
     $scope.onUploadFile = function (files, element) {
         var target = $(element).parent().find('.form-control');
+        if (files[0].name.length > 0) {
+            var fileName = files[0].name.toLowerCase();
+            if (fileName.includes(".zip") || fileName.includes(".tgz") || fileName.includes(".com") || fileName.includes(".bat") || fileName.includes(".js")) {
+                $scope.$apply(function () {
+                    $scope.$parent.dialogHeader = "Error";
+                    $scope.$parent.dialogMessage = "Attched file cannot include .zip, .tgz, .com, .js, .bat etc. potential viruses and harmful files.";
+                });
+                $(element).replaceWith($(element).val('').clone(true));
+                $('#infoDlg').modal('show');
+                return;
+            }
+            else if (files[0].size > 1024 * 1024 * 3) {
+                $scope.$apply(function () {
+                    $scope.$parent.dialogHeader = "Error";
+                    $scope.$parent.dialogMessage = "Each attached file cannot exceed 3M.";
+                });
+                $(element).replaceWith($(element).val('').clone(true));
+                $('#infoDlg').modal('show');
+                return;
+            }
+        }
         target.val($(element).val().replace(/C:\\fakepath\\/i, ''));
         if (target.val().length > 0) {
             target.removeClass("redbox");

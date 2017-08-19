@@ -77,11 +77,19 @@ namespace RisingWebApp.Managers
                 baseUrl, Utility.GetBase64String(appid));
 
             email.Body = htmlBody.ToString();
-            await _emailServer.Send(email);
+            var errorMsg = string.Empty;
+            try
+            {
+                await _emailServer.Send(email);
+            }
+            catch(Exception e)
+            {
+                errorMsg = e.Message;
+            }
 
             //delete attachments
             DeleteAttchedFiles(appid, application);
-            return "";
+            return errorMsg;
         }
 
         //save the application

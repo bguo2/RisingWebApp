@@ -202,6 +202,7 @@
     <Compile Include="Shared\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AvailableHouses.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
