@@ -39,7 +39,7 @@
         <b>{{applicationDescription}}</b>
     </div>
 
-    <div ng-disabled="disableForms" ng-class="{'disabled': disableForms}">
+    <div ng-disabled="disableForms" ng-class="{'disabled': disableForms}" id="appForms">
         <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm0" ng-show="formShow[0]" id="form0"></div>
         <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm1" ng-show="formShow[1]" id="form1"></div>
         <div ng-include="'/Static/Application.html'" ng-controller="ApplicationForm2" ng-show="formShow[2]" id="form2"></div>
@@ -48,6 +48,10 @@
 
     <div id="errorMsg" ng-show="showErrorMsg" class="panel" style="color:red">
 
+    </div>
+    <div ng-show="spinnerShow" align="center">
+        <p>System is submitting your application, please wait...</p>
+        <div class="loader"></div>
     </div>
 
     <div class="panel" id="panelButtons">
@@ -76,7 +80,7 @@
             </div>
         </div>
     </div>
-    <!--confirm dialog-->>
+    <!--confirm dialog-->
     <div id="confirmDlg" class="modal fade" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">

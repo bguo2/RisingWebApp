@@ -69,7 +69,7 @@ function processAppForm($scope, formIdName, formNumber, $filter)
         "Agreement": $scope.Agreement,
         "Documents": $scope.Documents
     };
-    $scope.incomeTypes = ['Week', 'Bi-Week', '3-Week', 'Month', 'Year'];
+    $scope.incomeTypes = ['Week', 'Bi-Week', 'Month', 'Year'];
     $scope.EmploymentHistory[0].IncomeType = $scope.incomeTypes[0];
     $scope.EmploymentHistory[1].IncomeType = $scope.incomeTypes[0];
     $scope.Agreement.Agree = false;
@@ -202,6 +202,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     $scope.Rentals = rentalsStr.split(";");
 
     //initialization
+    $scope.spinnerShow = false;
     $scope.showErrorMsg = false;
     $scope.disableForms = true;
     $scope.disableSubmit = true;
@@ -335,6 +336,18 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
             if (i > 0) {
                 applicationName = "Application " + (i + 1);
             }
+            if ($scope.Applications[i].PersonalInfo.Apptype === undefined) {
+                return "Application type in the personal information section (#2) is not specified on " + applicationName;
+            }
+            if ($scope.Applications[i].PersonalInfo.FullName === undefined) {
+                return "Full name in the personal information section (#2) is not specified on " + applicationName;
+            }
+            if ($scope.Applications[i].PersonalInfo.BirthDate == null) {
+                return "BirthDate in the personal information section (#2) is not specified on " + applicationName;
+            }
+            if ($scope.Applications[i].PersonalInfo.Ssn == null) {
+                return "Social security number in the personal information section (#2) is not specified on " + applicationName + " If you don't have SSN, input your tax indetifier or N.A.";
+            }
             if (!$scope.Applications[i].Agreement.Agree) {
                 return "You need to check the checkbox in the agreement section (#8) on " + applicationName;
             }
@@ -344,6 +357,9 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     }
 
     $scope.submitToServer = function () {
+        $('#appForms').hide();
+        $scope.spinnerShow = true;
+        $scope.showErrorMsg = false;
         $scope.disableAllButtons();
         var formData = new FormData();
         formData.append("application", JSON.stringify($scope.RentApplication));
@@ -370,7 +386,9 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
             data: formData,
             success: function (data, statusText, xhr) {
                 $("body").css("cursor", "default");
+                $('#appForms').show();
                 $scope.$apply(function () {
+                    $scope.spinnerShow = false;
                     $scope.dialogHeader = "Success";
                     $scope.dialogMessage = 'Thank you for applying for ' + $scope.Premises.Address + '. Your application has been sent to Rising Investments LLC successfully. Once you have paid the screening/credit check fees, our staff will contact you soon.';
                 });
@@ -378,9 +396,11 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
             },
             error: function (xhr, textStatus, errorThrown) {
                 $("body").css("cursor", "default");
+                $('#appForms').show();
                 $('#errorMsg').html(xhr.responseText);
                 //javascript call angular
                 $scope.$apply(function () {
+                    $scope.spinnerShow = false;
                     $scope.dialogHeader = "Failure";
                     $scope.dialogMessage = 'Unfortunately, your application has been failed to send to Rising Investments LLC. Please check the errors and try it again.';
                     $scope.enableButtonsForSubmitFail();

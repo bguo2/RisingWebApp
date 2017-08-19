@@ -56,7 +56,7 @@ function viewAppForm($scope, formIdName, formNumber, $timeout) {
     $scope.referenceShow = false;
     $scope.agreementShow = false;
     $scope.documentShow = false;
-    $scope.incomeTypes = ['Week', 'Bi-Week', '3-Week', 'Month', 'Year'];
+    $scope.incomeTypes = ['Week', 'Bi-Week', 'Month', 'Year'];
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
     }
