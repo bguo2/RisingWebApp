@@ -36,7 +36,8 @@ namespace RisingWebApp.Managers
             var filePath = GetAppDataFile(appId);
             if (!File.Exists(filePath))
                 throw new Exception(string.Format("The data for {0} is not found.", appId));
-            var jsonStr = File.ReadAllText(filePath);
+            var encryptStr = File.ReadAllText(filePath);
+            var jsonStr = Utility.DecryptStringAES(encryptStr, Utility.RisingInvestmentPassword);
             return await Task.FromResult(jsonStr);
         }
 
@@ -98,7 +99,8 @@ namespace RisingWebApp.Managers
             var appid = new string(application.Applications.ElementAt(0).PersonalInfo.Ssn.Where(c => char.IsLetterOrDigit(c)).ToArray());
             var filePath = GetAppDataFile(appid);
             var jsonStr = JsonConvert.SerializeObject(application);
-            File.WriteAllText(filePath, jsonStr);
+            var encryptStr = Utility.EncryptStringAES(jsonStr, Utility.RisingInvestmentPassword);
+            File.WriteAllText(filePath, encryptStr);
         }
 
         //save attachments
