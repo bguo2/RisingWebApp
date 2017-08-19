@@ -348,6 +348,9 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
             if ($scope.Applications[i].PersonalInfo.Ssn == null) {
                 return "Social security number in the personal information section (#2) is not specified on " + applicationName + " If you don't have SSN, input your tax indetifier or N.A.";
             }
+            if (Object.keys($scope.Applications[i].PersonalInfo.DriverLicense).length < 3) {
+                return "Driver License information is not complete on " + applicationName + " input N.A. if you don't have one."
+            }
             if (!$scope.Applications[i].Agreement.Agree) {
                 return "You need to check the checkbox in the agreement section (#8) on " + applicationName;
             }

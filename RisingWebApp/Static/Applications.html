@@ -1,13 +1,23 @@
 ﻿
 <div style="padding-top:20px; background-color:lightgrey; padding-left:15px;padding-right:15px; padding-bottom:2px;">
-    <b>THIS SECTION TO BE COMPLETED BY APPLICANT. A SEPARATE APPLICATION TO RENT IS REQUIRED FOR EACH OCCUPANT 18 YEARS OF AGE OR OVER, OR AN EMANCIPATED MINOR (Click the &quot;Add Another Application&quot; button to start another application).</b>
-    <p>A non-refundable tenant screening/credit check fee of $35.00 per adult is charged. The application(s) cannot be processed without tenant screening/credit check fee. The average processing time is three to seven days. Please note that under certain circumstances processing time may exceed this time period.<br />
-    <b>Contact Info:<br />
-        Lisa<br />
-        Rising Investments LLC<br />
-        Tel: (408) 668-5515 &nbsp;&nbsp;&nbsp;&nbsp;Fax: (916) 290-0558<br />
-        Email: risingworks@gmail.com
-        </b></p>
+    <div>
+        <b>THIS SECTION TO BE COMPLETED BY APPLICANT. A SEPARATE APPLICATION TO RENT IS REQUIRED FOR EACH OCCUPANT 18 YEARS OF AGE OR OVER, OR AN EMANCIPATED MINOR (Click the &quot;Add Another Application&quot; button to start another application).</b>
+        <p>A non-refundable tenant screening/credit check fee of $35.00 per adult is charged. The application(s) cannot be processed without tenant screening/credit check fee. The average processing time is three to seven days. Please note that under certain circumstances processing time may exceed this time period.</p>
+    </div>
+    <div class="row">
+        <div style="float:left; margin-left:15px;">
+            <img src="/Static/Images/logo.jpeg" style="width:205px;height:92px;">
+        </div>
+        <div style="float:right; margin-right:30px;margin-top:-2px;">
+            <b>
+                Contact Info:<br />
+                Lisa<br />
+                Rising Investments LLC<br />
+                Tel: (408) 668-5515 &nbsp;&nbsp;&nbsp;&nbsp;Fax: (916) 290-0558<br />
+                Email: risingworks@gmail.com
+            </b>
+        </div>
+    </div>
 </div>
 
 <form novalidate id="applicationForm" ng-submit="submitForm()">
@@ -47,7 +57,6 @@
     </div>
 
     <div id="errorMsg" ng-show="showErrorMsg" class="panel" style="color:red">
-
     </div>
     <div ng-show="spinnerShow" align="center">
         <p>System is submitting your application, please wait...</p>
@@ -89,7 +98,8 @@
                     <h4 class="modal-title" id="infoDlgHeader">Confirm</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Please make sure you have completed all required information(red boxes), are you sure you want to submit your application now?</p>
+                    <p>Please make sure you have completed all required information(red boxes).<br />
+                    Are you sure you want to submit your application now?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="confirmYesClicked();">Yes</button>

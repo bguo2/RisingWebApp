@@ -208,6 +208,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Static\Images\logo.jpeg" />
     <Content Include="Scripts\PageController\AppViewController.js" />
     <Content Include="Scripts\PageController\Controller.js" />
     <Content Include="Scripts\PageRouting\Routing.js" />
