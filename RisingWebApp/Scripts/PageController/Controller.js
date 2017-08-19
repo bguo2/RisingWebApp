@@ -402,9 +402,14 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
             }
         }
 
+        var token = $('input[name=__RequestVerificationToken]').val();
+        var headers = {};
+        headers["__RequestVerificationToken"] = token;
         $.ajax({
             type: "POST",
             url: "/api/Application",
+            cache: false,
+            headers: headers,
             contentType: false,
             processData: false,
             data: formData,
