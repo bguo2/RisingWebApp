@@ -223,6 +223,9 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     $scope.Rentals = rentalsStr.split(";");
 
     //initialization
+    var date = new Date();
+    $('#movein_date').attr("min", date.toISOString().split('T')[0]);
+
     $scope.spinnerShow = false;
     $scope.showErrorMsg = false;
     $scope.disableForms = true;
@@ -352,6 +355,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     }
 
     $scope.uiValidation = function () {
+        debugger;
         var applicationName = "Main Application.";
         for (i = 0; i < $scope.Applications.length; i++) {
             if (i > 0) {
@@ -370,7 +374,26 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
                 return "Social security number in the personal information section (#2) is not specified on " + applicationName + " If you don't have SSN, input your tax indetifier or N.A.";
             }
             if (Object.keys($scope.Applications[i].PersonalInfo.DriverLicense).length < 3) {
-                return "Driver License information is not complete on " + applicationName + " input N.A. if you don't have one."
+                return "Driver License information is not complete on " + applicationName + " Input N.A. if you don't have one."
+            }
+            if ($scope.Applications[i].PersonalInfo.HomePhone == undefined && $scope.Applications[i].PersonalInfo.WorkPhone == undefined && $scope.Applications[i].PersonalInfo.OtherPhone == undefined) {
+                return "Telephone is not specified on " + applicationName;
+            }
+            if ($scope.Applications[i].PersonalInfo.Email == undefined || $scope.Applications[i].PersonalInfo.Email.length >= 0) {
+                if ($scope.Applications[i].PersonalInfo.Email != undefined && $scope.Applications[i].PersonalInfo.Email.length > 0) {
+                    var re = /\S+@\S+\.\S+/;
+                    if (!re.test($scope.Applications[i].PersonalInfo.Email))
+                        return "Invalid email address on " + applicationName;
+                }
+                else {
+                    return "Invalid email address on " + applicationName;
+                }
+            }
+            if (Object.keys($scope.Applications[i].PersonalInfo.AutoInfo).length < 6) {
+                return "Auto information is not complete on " + applicationName + " Input N.A. if you don't have one."
+            }
+            if (Object.keys($scope.Applications[i].PersonalInfo.Emergency).length < 4) {
+                return "Emergency information is not complete on " + applicationName + " Input N.A. if you don't have one."
             }
             if (!$scope.Applications[i].Agreement.Agree) {
                 return "You need to check the checkbox in the agreement section (#8) on " + applicationName;
