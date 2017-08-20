@@ -115,7 +115,7 @@ function processAppForm($scope, formIdName, formNumber, $filter)
 
     $scope.agreementClick = function (event) {
         if ($scope.Agreement.Agree) {
-            $scope.Agreement.SignDate = $filter('date')(new Date(), 'MM/dd/yyyy hh:mm:ss');
+            $scope.Agreement.SignDate = $filter('date')(new Date(), 'MM/dd/yyyy hh:mm:ss a');
             $(event.target).closest('span').removeClass("redbox");
         }
         else {

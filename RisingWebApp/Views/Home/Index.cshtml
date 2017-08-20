@@ -3,8 +3,8 @@
     ViewBag.Title = "Home Page";
 }
 
-@Html.AntiForgeryToken();
 <div ng-controller="HomeController">
+    @Html.AntiForgeryToken()
     <input type="hidden" id="AvailableHouses" value="@ViewBag.AvailableHouses" />
     <input type="hidden" id="Rentals" value="@ViewBag.Rentals" />
     <input type="hidden" id="SuccessRedirectUrl" value="@ViewBag.SuccessRedirectUrl" />
