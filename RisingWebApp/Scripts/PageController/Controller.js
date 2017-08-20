@@ -22,6 +22,7 @@ app.directive('input', function() {
 
 function processAppForm($scope, formIdName, formNumber, $filter)
 {
+    $scope.formNumber = formNumber;
     $scope.disableInput = false;
     if ($scope.$parent.curIndex > 0) {
         $scope.$parent.applicationDescription = "Application " + $scope.$parent.applicationsNumber;
@@ -85,12 +86,31 @@ function processAppForm($scope, formIdName, formNumber, $filter)
     $scope.documentsShow = false;
     $scope.personalInfoDivClick = function () {
         $scope.personalInfoShow = !$scope.personalInfoShow;
+        var date = new Date();
+        date.setFullYear(date.getFullYear() - 18);
+        $('#birthDate_' + formNumber).attr("max", date.toISOString().split('T')[0]);
     }
     $scope.residenceHistoryDivClick = function () {
         $scope.residenceShow = !$scope.residenceShow;
+        var date = new Date();
+        date.setDate(date.getDate() - 1);
+        $('#curAddressStartDate_' + formNumber).attr("max", date.toISOString().split('T')[0]);
+        $('#preAddressStartDate_' + formNumber).attr("max", date.toISOString().split('T')[0]);
+        date.setDate(date.getDate() + 2);
+        $('#curAddressEndDate_' + formNumber).attr("min", date.toISOString().split('T')[0]);
+        date.setDate(date.getDate() - 3);
+        $('#preAddressEndDate_' + formNumber).attr("max", date.toISOString().split('T')[0]);
     }
     $scope.employmentDivClick = function () {
         $scope.employmentShow = !$scope.employmentShow;
+        var date = new Date();
+        date.setDate(date.getDate() - 1);
+        $('#curEmployStartDate_' + formNumber).attr("max", date.toISOString().split('T')[0]);
+        $('#preEmployStartDate_' + formNumber).attr("max", date.toISOString().split('T')[0]);
+        date.setDate(date.getDate() + 2);
+        $('#curEmployEndDate_' + formNumber).attr("min", date.toISOString().split('T')[0]);
+        date.setDate(date.getDate() - 3);
+        $('#preEmployEndDate_' + formNumber).attr("max", date.toISOString().split('T')[0]);
     }
     $scope.creditInfoDivClick = function () {
         $scope.creditInfoShow = !$scope.creditInfoShow;
@@ -192,13 +212,16 @@ function processAppForm($scope, formIdName, formNumber, $filter)
     });
 }
 
-app.controller('ApplicationForm0', function ($scope, $timeout, $filter) {
+app.controller('ApplicationForm0', function ($scope, $timeout, $filter) {    
     processAppForm($scope, '#form0', 0, $filter);
     //listen to the parent event
     $scope.$on('premisesDoneEvent', function (event, args) {
         if ($scope.$parent.curIndex === 0) {
             $scope.$parent.enableButtons();
             $scope.personalInfoShow = true;
+            var date = new Date();
+            date.setFullYear(date.getFullYear() - 18);
+            $('#birthDate_0').attr("max", date.toISOString().split('T')[0]);
         }
     });
 });
@@ -224,6 +247,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
 
     //initialization
     var date = new Date();
+    date.setDate(date.getDate() + 1);
     $('#movein_date').attr("min", date.toISOString().split('T')[0]);
 
     $scope.spinnerShow = false;
@@ -355,7 +379,6 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     }
 
     $scope.uiValidation = function () {
-        debugger;
         var applicationName = "Main Application.";
         for (i = 0; i < $scope.Applications.length; i++) {
             if (i > 0) {
@@ -399,7 +422,7 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
                 return "You need to check the checkbox in the agreement section (#8) on " + applicationName;
             }
         }
-
+        
         return "";
     }
 

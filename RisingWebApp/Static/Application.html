@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Date of Birth:</label>
-                    <input type="date" class="form-control" ng-model="PersonalInfo.BirthDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="PersonalInfo.BirthDate" ng-class="[requiredClass]" id="birthDate_{{formNumber}}">
                 </div>
                 <div class="form-group col-sm-4">
                     <label>Social Security No.:</label>
@@ -211,11 +211,11 @@
                 </div>
                 <div class="form-group col-sm-2">
                     <label>From:</label>
-                    <input type="date" class="form-control" ng-model="ResidenceHistory[0].StartDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="ResidenceHistory[0].StartDate" ng-class="[requiredClass]" id="curAddressStartDate_{{formNumber}}">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>To:</label>
-                    <input type="date" class="form-control" ng-model="ResidenceHistory[0].EndDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="ResidenceHistory[0].EndDate" ng-class="[requiredClass]" id="curAddressEndDate_{{formNumber}}">
                 </div>
             </div>
             <div class="row">
@@ -258,11 +258,11 @@
                 </div>
                 <div class="form-group col-sm-2">
                     <label>From:</label>
-                    <input type="date" class="form-control" ng-model="ResidenceHistory[1].StartDate">
+                    <input type="date" class="form-control" ng-model="ResidenceHistory[1].StartDate" id="preAddressStartDate_{{formNumber}}">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>To:</label>
-                    <input type="date" class="form-control" ng-model="ResidenceHistory[1].EndDate">
+                    <input type="date" class="form-control" ng-model="ResidenceHistory[1].EndDate" id="preAddressEndDate_{{formNumber}}">
                 </div>
             </div>
             <div class="row">
@@ -308,11 +308,11 @@
                 </div>
                 <div class="form-group col-sm-2">
                     <label>From:</label>
-                    <input type="date" class="form-control" ng-model="EmploymentHistory[0].StartDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="EmploymentHistory[0].StartDate" ng-class="[requiredClass]" id="curEmployStartDate_{{formNumber}}">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>To:</label>
-                    <input type="date" class="form-control" ng-model="EmploymentHistory[0].EndDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="EmploymentHistory[0].EndDate" ng-class="[requiredClass]" id="curEmployEndDate_{{formNumber}}">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Supervisor:</label>
@@ -326,7 +326,7 @@
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>Employment gross income $:</label>
-                    <input type="text" class="form-control" ng-model="EmploymentHistory[0].GrossIncome" ng-class="[requiredClass]">
+                    <input type="number" class="form-control" ng-model="EmploymentHistory[0].GrossIncome" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2" style="margin-top:25px;">
                     <label>Per:</label>
@@ -348,11 +348,11 @@
                 </div>
                 <div class="form-group col-sm-2">
                     <label>From:</label>
-                    <input type="date" class="form-control" ng-model="EmploymentHistory[1].StartDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="EmploymentHistory[1].StartDate" ng-class="[requiredClass]" id="preEmployStartDate_{{formNumber}}">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>To:</label>
-                    <input type="date" class="form-control" ng-model="EmploymentHistory[1].EndDate" ng-class="[requiredClass]">
+                    <input type="date" class="form-control" ng-model="EmploymentHistory[1].EndDate" ng-class="[requiredClass]" id="preEmployEndDate_{{formNumber}}">
                 </div>
                 <div class="form-group col-sm-2">
                     <label>Supervisor:</label>
@@ -366,7 +366,7 @@
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label>Employment gross income $:</label>
-                    <input type="text" class="form-control" ng-model="EmploymentHistory[1].GrossIncome" ng-class="[requiredClass]">
+                    <input type="number" class="form-control" ng-model="EmploymentHistory[1].GrossIncome" ng-class="[requiredClass]">
                 </div>
                 <div class="form-group col-sm-2" style="margin-top:25px;">
                     <label>Per:</label>
