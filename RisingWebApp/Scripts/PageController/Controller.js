@@ -154,10 +154,11 @@ function processAppForm($scope, formIdName, formNumber, $filter)
         var target = $(element).parent().find('.form-control');
         if (files[0].name.length > 0) {
             var fileName = files[0].name.toLowerCase();
-            if (fileName.includes(".zip") || fileName.includes(".tgz") || fileName.includes(".com") || fileName.includes(".bat") || fileName.includes(".js")) {
+            if (fileName.includes(".zip") || fileName.includes(".tgz") || fileName.includes(".com") || fileName.includes(".exe")
+                || fileName.includes(".bat") || fileName.includes(".js")) {
                 $scope.$apply(function () {
                     $scope.$parent.dialogHeader = "Error";
-                    $scope.$parent.dialogMessage = "Attched file cannot include .zip, .tgz, .com, .js, .bat etc. potential viruses and harmful files.";
+                    $scope.$parent.dialogMessage = "Attched file cannot include .zip, .tgz, .com, .exe, .js, .bat etc. potential viruses and harmful files.";
                 });
                 $(element).replaceWith($(element).val('').clone(true));
                 $('#infoDlg').modal('show');
