@@ -68,12 +68,26 @@ namespace RisingWebApp.Managers
             email.From = ConfigurationManager.AppSettings.Get("FromEmail");
             email.To = ConfigurationManager.AppSettings.Get("ToEmail");
             email.IsBodyHtml = true;
-            email.Subject = "Rent Application For " + application.Premises.Address;
+            email.Subject = string.Format("{0}'s Rent Application For {1}", mainApp.PersonalInfo.FullName, application.Premises.Address);
             //body
             var baseUrl = ConfigurationManager.AppSettings.Get("BaseUrl");
             //encode to base64
-            htmlBody.AppendFormat("Dear Lisa,<br><br>{0} has submitted the application for {1}.<br>", 
-                mainApp.PersonalInfo.FullName, application.Premises.Address);
+            htmlBody.AppendFormat("Dear Lisa,<br><br>{0} has submitted the application for <b>{1}. Move-in date: {2}</b><br>The following is the applicants' information.<br><br>", 
+                mainApp.PersonalInfo.FullName, application.Premises.Address, application.Premises.Movein_date.ToString("MM/dd/yyyy"));
+            htmlBody.Append("<table style=\"border-collapse:collapse; color: rgb(0, 0, 0);\"><tr><td style=\"border: 1px solid rgb(221, 221, 221); padding: 8px\"><b>Name</b></td><td style=\"border: 1px solid rgb(221, 221, 221); padding: 8px\"><b>Phone</b></td><td style=\"border: 1px solid rgb(221, 221, 221); padding: 8px\"><b>Email</b></td><td style=\"border: 1px solid rgb(221, 221, 221); padding: 8px\"><b>SSN</b></td></tr> ");
+            foreach (var info in application.Applications)
+            {
+                string phone = string.Empty;
+                if (!string.IsNullOrEmpty(info.PersonalInfo.HomePhone))
+                    phone = string.Format("{0} (Home)<br>", info.PersonalInfo.HomePhone);
+                if (!string.IsNullOrEmpty(info.PersonalInfo.WorkPhone))
+                    phone = string.Format("{0}{1} (Work)<br>", phone, info.PersonalInfo.WorkPhone);
+                if (!string.IsNullOrEmpty(info.PersonalInfo.OtherPhone))
+                    phone = string.Format("{0}{1} (Other)", phone, info.PersonalInfo.OtherPhone);
+                htmlBody.AppendFormat("<tr><td style=\"border: 1px solid rgb(221, 221, 221); padding: 8px\">{0}</td><td style=\"border: 1px solid rgb(221, 221, 221); padding: 8px\">{1}</td><td style=\"border: 1px solid rgb(221, 221, 221); padding: 8px\">{2}</td><td style=\"border: 1px solid rgb(221, 221, 221); padding: 8px\">{3}</td></tr>", 
+                    info.PersonalInfo.FullName, phone, info.PersonalInfo.Email, info.PersonalInfo.Ssn);
+            }
+            htmlBody.Append("</table><br>");
             htmlBody.AppendFormat("To view the full application, please click the following link:<br>{0}/Home/ViewApplication?appId={1}", 
                 baseUrl, Utility.GetBase64String(appid));
 
