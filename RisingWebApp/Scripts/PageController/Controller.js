@@ -241,10 +241,10 @@ app.controller('ApplicationForm3', function ($scope, $filter) {
 
 app.controller('HomeController', function ($scope, $rootScope, $location, $filter, $http, $timeout) {
     //avaliable houses
-    var availableHousesStr = $('#AvailableHouses').val();
+    /*var availableHousesStr = $('#AvailableHouses').val();
     var rentalsStr = $('#Rentals').val();
     $scope.Houses = availableHousesStr.split(";");
-    $scope.Rentals = rentalsStr.split(";");
+    $scope.Rentals = rentalsStr.split(";");*/
 
     //initialization
     var date = new Date();
@@ -278,8 +278,8 @@ app.controller('HomeController', function ($scope, $rootScope, $location, $filte
     
     //basci section
     $scope.PremisesAddressChanged = function () {
-        var index = $scope.Houses.indexOf($scope.Premises.Address);
-        $scope.Premises.Rent = $scope.Rentals[index];
+        //var index = $scope.Houses.indexOf($scope.Premises.Address);
+        //$scope.Premises.Rent = $scope.Rentals[index];
         $('#premisesAddress').removeClass("redbox");
         $('#premisesRent').removeClass("redbox");
     }
